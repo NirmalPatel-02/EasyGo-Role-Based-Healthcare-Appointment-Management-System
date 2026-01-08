@@ -1,73 +1,109 @@
-##📖 Overview
+# EasyGo – Role-Based Healthcare Appointment Management System
 
-EasyGo is a full-stack healthcare appointment booking platform that enables clients to book doctors, doctors to manage availability and appointments, and admins to oversee platform operations.
-The system is designed with scalable backend architecture, role-based access control, and real-world workflows similar to production healthcare platforms.
+## 📖 Overview
+EasyGo is a full-stack healthcare appointment booking platform that enables **clients to book doctors**, **doctors to manage availability and appointments**, and **admins to oversee platform operations**.  
+The system is designed with **scalable backend architecture**, **role-based access control**, and **real-world workflows** similar to production healthcare platforms.
 
-👥 User Roles & Features
-🧑 Client
+This project was developed as part of a **real internship experience**, focusing on backend development, database design, and API-driven workflows.
 
-Register & login
+---
 
-Browse doctors and view profiles
+## 👥 User Roles & Features
 
-Book appointments based on available slots
+### 🧑 Client
+- User registration and authentication
+- Browse doctors and view detailed profiles
+- Book appointments based on available time slots
+- Make payments for appointments
+- Track appointment status:
+  - Pending
+  - Confirmed
+  - Completed
+  - Cancelled
 
-Make payments
+---
 
-View appointment status (Pending, Confirmed, Completed, Cancelled)
+### 🩺 Doctor
+- Doctor registration and profile management
+- Manage availability and time slots
+- Accept or reject appointment requests
+- View upcoming and past appointments
+- Track earnings, commissions, and wallet balance
 
-🩺 Doctor
+---
 
-Manage profile and specialization
+### 🛠 Admin
+- Approve or reject doctor registrations
+- Manage platform CMS pages (Privacy Policy, Terms & Conditions, Tips, etc.)
+- Monitor platform activity:
+  - Appointments
+  - Doctors
+  - Clients
+- View earnings, commissions, GST, and withdrawals
+- Manage system settings and notifications
 
-Create and manage available time slots
+---
 
-Accept / reject appointments
+## 🏗 System Architecture
 
-Track earnings, commissions, and wallet balance
+- **Backend Framework**: Laravel (MVC Architecture)
+- **Database**: MySQL
+- **Authentication**: Role-based authentication & authorization
+- **API Style**: RESTful APIs
+- **Frontend**: Server-rendered dashboards (Admin & Doctor panels)
 
-View appointment history
+---
 
-🛠 Admin
+## 🗄 Database Design
 
-Approve / reject doctor registrations
+Key database entities include:
 
-Manage platform CMS pages (Privacy Policy, Terms, Tips, etc.)
+- Users (Client / Doctor / Admin)
+- Doctor Profiles
+- Appointments
+- Time Slots
+- Payments
+- Wallet & Transactions
+- CMS Pages
 
-Monitor appointments, earnings, GST, and commissions
+The database schema is optimized for relational integrity, scalability, and real-world usage.
 
-View doctor and client activity
+---
 
-Control platform settings
+## 📸 Screenshots
 
-🏗 System Architecture
+Below are some screenshots demonstrating core system workflows:
 
-Backend: Laravel (MVC Architecture)
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
 
-Database: MySQL
+### Doctor Details & Slot Management
+![Doctor Details](screenshots/doctor-details.png)
 
-Authentication: Role-based authentication & authorization
+### Platform Overview & Analytics
+![Platform Overview](screenshots/platform-overview.png)
 
-API Style: RESTful APIs
+> Screenshots are included for UI reference and workflow clarity.
 
-Frontend: Server-rendered views (Admin & Doctor dashboards)
+---
 
-🗄 Database Design
+## 🔄 Appointment Workflow
 
-Key entities:
+1. Client selects a doctor and available time slot
+2. Client books appointment and completes payment
+3. Appointment status is set to **Pending**
+4. Doctor accepts or rejects the appointment
+5. Appointment progresses to **Confirmed / Completed / Cancelled**
+6. Earnings and wallet balances are updated accordingly
 
-Users (Client / Doctor / Admin)
 
-Doctor Profiles
+## 🚀 How to Run Locally
 
-Appointments
-
-Time Slots
-
-Payments
-
-Wallet & Transactions
-
-CMS Pages
-
-📸 Screenshots
+```bash
+git clone https://github.com/your-username/easygo-healthcare-system.git
+cd easygo-healthcare-system
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
