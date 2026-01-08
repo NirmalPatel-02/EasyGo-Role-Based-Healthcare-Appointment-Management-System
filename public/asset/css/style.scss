@@ -1,0 +1,1047 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    // box-sizing: border-box;
+}
+body{
+    font-family: "Roboto", sans-serif !important;
+    // font-family: "Montserrat", sans-serif;
+}
+$Montserrat: "Montserrat", sans-serif;
+.red_f{
+    color: #FF0000;
+}
+.blue_f{
+    color: #000066;
+}
+.grey_f{
+    color: #6C6A6A;
+}
+.black_f{
+    color: #222222;
+}
+a{
+    text-decoration: none !important;
+}
+// HEADER SECTION START
+nav{
+    ul{
+        li{
+            display: flex;
+            align-items: center;
+            span{
+                color: #000;
+                font-size: 16px;
+                font-weight: 500;
+                font-family: $Montserrat;
+            }
+            .custone_book_appoin_btn{
+                background: #FF0000;
+                color: #FFF;
+                font-size: 14px;
+                font-weight: 600;
+                height: 48px;
+                border-radius: 5px;
+                padding: 5px 15px;
+            }
+            .msg_count{
+                background: #EE4A62;
+                height: 12px;
+                width: 12px;
+                color: #FFF;
+                font-size: 9px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                right: 0%;
+                border: 1px solid;
+            }
+            .User_admin{
+                .dr_user_img{
+                    height: 44px;
+                    width: 44px;
+                    border-radius: 50%;
+                }
+                h4{
+                    color: #404040;
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+                p{
+                    color: #565656;
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.Login_Form{
+    height: 100vh;
+    .left_part{
+        background-image: linear-gradient(#9090FF,#000066);
+        img{
+            height: 400px;
+            width: 400px;
+        }
+    }
+    .right_part{
+        position: relative;
+        padding: 60px 100px;
+        h3{
+            color: #090914;
+            font-size: 32px;
+            font-weight: 600;
+        }
+        p{
+            color: #52525B;
+            font-size: 16px;
+            span{
+                color: #000066;
+                font-weight: 600;
+            }
+        }
+        a{
+            span{
+                color: #000066;
+                font-size: 14px;
+            }
+        }
+        form{
+            label{
+                font-size: 16px;
+                font-weight: 500;
+                color: #090914;
+            }            
+            .control-label{
+                display:block;
+                margin:40px auto;
+                font-weight:900;
+            }
+            .verification-code--inputs input[type=text] {
+                width: 64px;
+                height: 46px;
+                padding: 10px;
+                text-align: center;
+                display: inline-block;
+                box-sizing:border-box;
+            }
+            .form_fild{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                height: 48px;
+                input:focus{
+                    outline: none;
+                }
+                .custome_otp_btn{
+                    color: #000066;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+        }
+        .back_to_login{
+            a{
+                color: #2A3547;
+                font-size: 14px;
+                font-family: $Montserrat;
+            }
+        }
+    }
+    .Copyright{
+        p{
+            color: #2A3547;
+            font-size: 14px;
+        }
+    }
+}
+.custome_login_btn{
+    background: #000066;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFF;
+    height: 48px;
+}
+
+// OPTIONS SECTION STRAT
+.Option_section{
+    background: rgba(0, 0, 102, 0.07);
+    h5{
+        font-size: 16px;
+        font-weight: 500;
+    }
+    select{
+        background: transparent;
+        outline: none;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+// SEARCH SECTION STRAT
+.search_section{
+    .search_field{
+        border: 1px solid #BDBDBD;
+        border-radius: 12px;
+        height: 48px;
+        input{
+            outline: none;
+            border: none;
+            width: 90%;
+            font-size: 14px;
+            color: #828282;
+            font-family: $Montserrat;
+        }
+        select{
+            outline: none;
+            border: none;
+            width: 100%;
+            font-size: 14px;
+            color: #828282;
+            background: transparent;
+            z-index: 1;
+            -webkit-appearance: none;
+            font-family: $Montserrat;
+        }
+        .search_svg{
+            position: absolute;
+            right: 3%;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .custum_search_btn{
+     background: #FF0000;
+     color: #FFF;
+     font-size: 16px;
+     font-weight: 600;   
+     height: 48px;
+     border-radius: 12px;
+    }
+}
+
+// DOCTORE LIST SECTION STRAT
+.Docter_Section{
+    .left_part{
+        .filter_part{
+            background: #F1F1F1;
+            border: 1px solid rgba(130, 130, 130, 0.15);
+            border-radius: 8px;
+            .filter_fild{
+                padding: 8px 20px;
+                border: 1px solid #E3E3E3;
+                background: #FFF;
+                border-radius: 5px;
+                button{
+                    color: #000;
+                    font-size: 14px;
+                }
+            }
+        }
+        .All_Dr_details{
+            .Dr_details{
+                border-radius: 8px;
+                border: 0.5px solid rgba(0, 0, 0, 0.15);
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.06);
+                h3{
+                    color: #000000;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+                li,
+                h5{
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .rating{
+                    color: #00A600;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                .location{
+                    color: #222222;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .times{
+                    color: #FF0000;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .Call_Doctor_btn{
+                    color: #3A698E;
+                    border: 1px solid #3A698E;
+                    border-radius: 5px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    height: 45px;
+                }
+                .Book_Appointment_btn{
+                    background: #00A600;
+                    color: #FFF;
+                    border-radius: 5px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    height: 45px;
+
+                }
+            }
+        }
+    }
+    .right_part{
+        .apontment_form{
+            border: 1px solid rgba(130, 130, 130, 0.15);
+            border-radius: 8px;
+            h3{
+                font-size: 22px;
+                font-weight: 500;
+            }
+            p{
+                font-size: 16px;
+            }
+            form{
+                label{
+                    color: #090914;
+                    font-weight: 500;
+                    font-family: $Montserrat;
+                }
+                select,
+                input{
+                    color: #828282;
+                    font-size: 14px;
+                }
+                .search_custome_btn{
+                    background: #FF0000;
+                    color: #FFF;
+                    font-size: 16px;
+                    font-weight: 600;   
+                    height: 48px;
+                    border-radius: 12px;
+                }
+            }
+        }
+        .top_health_tips{
+            border: 1px solid rgba(130, 130, 130, 0.15);
+            border-radius: 8px;
+            h3{
+                font-size: 20px;
+                font-weight: 500;
+            }
+            h5{
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+footer{
+    background: #EDEDF4;
+    .social_icon{
+        height: 50px;
+        width: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+    }
+    h3{
+        color: #191D23;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    p{
+        color: #4B5768;
+        font-size: 16px;
+    }
+    .rightes_line{
+        border-top: 1px solid #D0D5DD;
+    }
+}
+
+.profile_title{
+    h3{
+        color: #000;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .profile_details{
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        .profile_img_bg{
+            position: relative;
+            background: #F5F9FA;
+            border-radius: 8px;
+            height: 277px;
+                .profile-pic {
+                    width: 200px;
+                    max-height: 200px;
+                    display: inline-block;
+                }
+                
+                .file-upload {
+                    display: none;
+                }
+                .circle {
+                    border-radius: 100% !important;
+                    overflow: hidden;
+                    width: 128px;
+                    height: 128px;
+                    border: 2px solid rgba(255, 255, 255, 0.2);
+                    position: absolute;
+                    top: 50px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                }
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
+                .p-image {
+                    position: absolute;
+                    top: 200px;
+                    transform: translateX(50%);
+                    right: 50%;
+                    color: #000;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    border: 1px solid;
+                    border-radius: 8px;
+                    padding: 5px 13px;
+                    font-size: 13px;
+                    font-weight: 600;
+
+                }
+                .p-image:hover {
+                transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+                }
+                .upload-button {
+                font-size: 13px;
+                }
+                
+                .upload-button:hover {
+                transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+                color: #999;
+            }
+        }
+        .right_part{
+            h4{
+                color: #202224;
+                font-size: 18px;
+                font-weight: 700;
+            }
+            form{
+                label{
+                    color: #302C36;
+                    font-size: 14px;
+                    font-weight: 500;
+                    font-family: $Montserrat;
+                }
+                input{
+                    color: #333333;
+                    font-size: 14px;
+                    font-weight: 500;
+                    font-family: $Montserrat;
+                }
+            }
+        }
+    }
+}
+
+.Appointment_page{
+    h3{
+        color: #000;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .search_fild{
+        background: #F5F9FA;
+        border: 1px solid #F5F9FA;
+        border-radius: 8px;
+        height: 40px;
+        input{
+            outline: none;
+            background: transparent;
+        }
+    }
+    .table_scroll{
+        table{
+            width: 100%;
+            thead{
+                tr{
+                    th{
+                        font-size: 12px;
+                        font-weight: 700;
+                        font-family: $Montserrat;
+                        color: #202224;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                        color: #202224;
+                        font-size: 12px;
+                        font-weight: 500;
+                        font-family: $Montserrat;
+                    }
+                    .name_fild{
+                        width: 110px;
+                    }
+                }
+            }
+        }
+    }
+    .table_page_list{
+        .pagination ul{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            background: #fff;
+            padding: 8px;
+            border-radius: 50px;
+            // box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+          }
+          .pagination ul li{
+            color: #202224;
+            list-style: none;
+            line-height: 34px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+          }
+          .pagination ul li.numb{
+            list-style: none;
+            height: 30px;
+            width: 30px;
+            margin: 0 3px;
+            line-height: 29px;
+            border-radius: 24%;
+            border: 1px solid #E0E0E0;
+          }
+          .pagination ul li.numb.first{
+            margin: 0px 3px 0 -5px;
+          }
+          .pagination ul li.numb.last{
+            margin: 0px -5px 0 3px;
+          }
+          .pagination ul li.dots{
+            font-size: 22px;
+            cursor: default;
+          }
+          .pagination ul li.btn{
+            padding: 0 20px;
+            border-radius: 5px;
+          }
+          .pagination li.active{
+            color: #fff;
+            background: #000066;
+        }
+    }
+}
+
+.Rescheduled_Booking_Page{
+    h3{
+        color: #000;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .Rescheduled{
+        color: #2F80ED;
+        font-family: $Montserrat;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .all_apoint_details{
+        .left_part{
+            background: rgba(247, 247, 247, 0.7);
+            form{
+                label{
+                    color: #090914;
+                    font-size: 16px;
+                    font-weight: 500;
+                    font-family: $Montserrat;
+                }
+                .inputFild{
+                    border: 1px solid #BDBDBD;
+                    background: #FFF;
+                    height: 48px;
+                    border-radius: 12px;    
+                    input{
+                        outline: none;
+                        font-size: 16px;
+                        font-weight: 600;
+                        font-family: $Montserrat;
+                    }
+                }
+            }
+        }
+        .right_part{
+            .appointment_date{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                p{
+                    font-size: 12px;
+                    font-family: $Montserrat;
+                }
+                h5{
+                    color: #000000;
+                    font-size: 20px;
+                    font-weight: 600;
+                    font-family: $Montserrat;
+                }
+            }
+            .Dr_details{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                h3{
+                    color: #000000;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+                li,
+                h5{
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .rating{
+                    color: #00A600;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                .location{
+                    color: #222222;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .times{
+                    color: #FF0000;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+            .location_detail{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                height: 50px;
+                input{
+                    outline: none;
+                    width: 90%;
+                }
+            }
+            .Rescheduled_Booking_btn{
+                background: #000066;
+                color: #FFF;
+                height: 50px;
+                border-radius: 12px;
+            }
+            .Cancel_Booking_btn{
+                border: 1px solid #000066;
+                color: #000066;
+                height: 50px;
+                border-radius: 12px;
+            }
+        }
+    }
+}
+
+.Book_Appointment_page{
+    .left_part{
+        h2{
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .Dr_details{
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.06);
+            h3{
+                color: #000000;
+                font-size: 20px;
+                font-weight: 500;
+            }
+            h5{
+                font-size: 16px;
+                font-weight: 500;
+            }
+            ul{
+                li{
+                    color: #000066;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+            .rating{
+                color: #00A600;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            .location{
+                color: #222222;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .times{
+                color: #FF0000;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+        h3{
+            font-size: 18px;
+            color: #121414;
+            font-weight: 700;
+        }
+        .about_dr{
+            color: rgba(18, 20, 20, 0.7);
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        .after_about{
+            color: #71716E;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1px solid #E7E7E5;
+            border-radius: 12px;
+        }
+        i{
+            font-size: 16px;
+            font-weight: 500;
+        }
+        ul{
+            li{
+                color: #71716E;
+                font-size: 14px;
+            }
+        }
+    }
+    .right_part{
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.06);
+        h2{
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .my_slider{
+            .left_right_arrow{
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+                    content: 'prev';
+                    display: none;
+                }
+                .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+                    content: 'next';
+                    display: none;
+                }
+            }
+            .slots_slider{
+                width: 85%;
+                .booking_date{
+                    border: 1px solid rgba(0, 0, 0, 0.07);
+                    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.06);
+                    border-radius: 12px;
+                    h5{
+                        color: #989795;
+                        font-size: 14px;
+                        font-weight: 600;
+                    }
+                    h4{
+                        color: #989795;
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+        .Morning_Slot{
+            .Slot_title{
+                color: #000066;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .morning_time{
+                border: 1px solid #E7E7E5;
+                color: #989795;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 8px;
+                padding: 10px 10px;
+            }
+            .selected{
+                border: 1px solid #000066;
+                color: #000066;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 8px;
+                padding: 10px 10px;
+            }    
+        }
+        .Continue_Booking_btn{
+            background: #FF0000;
+            color: #FFF;
+            height: 50px;
+            border-radius: 12px;
+        }
+        .Fee_Booking{
+            color: #000066;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+}
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .Similar_Doctors_Slider{
+    .title_text{
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .view_all{
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .similar_dr{
+        border: 0.5px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.06);
+        border-radius: 8px;
+        .dr_img{
+            height: 68px;
+            width: 58px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .dr_names{
+            h4{
+                font-size: 20px;
+                font-weight: 500;
+            }
+            h5{
+                font-size: 16px;
+                font-weight: 500;
+            }
+            ul{
+                li{
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+        .language_digri{
+            font-size: 16px;
+            color: #222222;
+            font-weight: 500;
+        }
+    }
+  }
+
+  .Appointment_Details_Page{
+    h3{
+        // color: #000;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .Rescheduled{
+        color: #2F80ED;
+        font-family: $Montserrat;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .all_apoint_details{
+        .left_part{
+            background: rgba(247, 247, 247, 0.7);
+            form{
+                label{
+                    color: #090914;
+                    font-size: 16px;
+                    font-weight: 500;
+                    font-family: $Montserrat;
+                }
+                .inputFild{
+                    border: 1px solid #BDBDBD;
+                    background: #FFF;
+                    height: 48px;
+                    border-radius: 12px;
+                    input{
+                        font-size: 14px;
+                        font-weight: 400;
+                        font-family: $Montserrat;
+                        outline: none;
+                    }
+                }
+            }
+        }
+        .right_part{
+            .appointment_date{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                p{
+                    font-size: 12px;
+                    font-family: $Montserrat;
+                }
+                h5{
+                    color: #000000;
+                    font-size: 20px;
+                    font-weight: 600;
+                    font-family: $Montserrat;
+                }
+            }
+            .Dr_details{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                h3{
+                    color: #000000;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
+                li,
+                h5{
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .rating{
+                    color: #00A600;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                .location{
+                    color: #222222;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .times{
+                    color: #FF0000;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+            .location_detail{
+                border: 1px solid #BDBDBD;
+                border-radius: 12px;
+                height: 50px;
+                input{
+                    outline: none;
+                    width: 90%;
+                }
+            }
+            .Continue_Booking_btn{
+                background: #FF0000;
+                color: #FFF;
+                height: 50px;
+                border-radius: 12px;
+            }
+            .Cancel_Booking_btn{
+                border: 1px solid #000066;
+                color: #000066;
+                height: 50px;
+                border-radius: 12px;
+            }
+        }
+    }
+}
+
+.rescheduled_booking_model{
+    .success_icon_bg{
+        height: 80px;
+        width: 80px;
+        background: rgba(0, 166, 0, 0.1);
+        border-radius: 50%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    h4{
+        font-size: 24px;
+        color: #101828;
+        font-weight: 600;
+    }
+    .time_date{
+        color: #000000;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+.Slot_Book_model{
+    .success_icon_bg{
+        height: 80px;
+        width: 80px;
+        background: rgba(32, 183, 152, 0.1);
+        border-radius: 50%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    h4{
+        font-size: 24px;
+        color: #101828;
+        font-weight: 600;
+    }
+    .time_date{
+        color: #000000;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.Cancel_Booking_Modal{
+    .delete_svg_bg{
+        height: 80px;
+        width: 80px;
+        background: rgba(255, 0, 0, 0.1);
+        border-radius: 50%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    h4{
+        font-size: 24px;
+        color: #101828;
+        font-weight: 600;
+    }
+    .custome_no_btn{
+        color: #000066;
+        font-size: 16px;
+        font-weight: 600;
+        border: 1px solid #000066;
+        border-radius: 12px;
+        height: 50px;
+        width: 150px;
+    }
+    .custome_yes_btn{
+        color: #FFF;
+        font-size: 16px;
+        font-weight: 600;
+        border: 1px solid #000066;
+        background: #000066;
+        border-radius: 12px;
+        height: 50px;
+        width: 150px;
+    }
+}

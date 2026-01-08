@@ -1,0 +1,301 @@
+@media (max-width: 480px) {
+    .Login_Form .left_part img {
+        height: 190px;
+        width: 190px;
+        margin: 20px 0px;
+    }
+    .Login_Form .right_part {
+        padding: 39px 15px;
+    }
+    .Login_Form .right_part h3 {
+        font-size: 26px;
+    }   
+    .Login_Form .right_part .form_fild input{
+        font-size: 13px;
+    }
+    .Login_Form .right_part .form_fild .number_fild{
+        width: 80% !important;
+    }
+    .Login_Form .right_part form label {
+        font-size: 15px;
+    }
+    .Option_section select,
+    .Option_section h5 {
+        font-size: 12px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details h3,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details h3,
+    .Book_Appointment_page .left_part .Dr_details h3 {
+        font-size: 16px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details .location,
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details li, .Appointment_Details_Page .all_apoint_details .right_part .Dr_details h5,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details .location,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details ul li, .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details h5,
+    .Book_Appointment_page .left_part .Dr_details .location,
+    .Book_Appointment_page .left_part .Dr_details ul li,
+    .Book_Appointment_page .left_part .Dr_details h5 {
+        font-size: 14px;
+    }
+    .Book_Appointment_page .right_part .my_slider .slots_slider {
+        width: 77%;
+    }
+    .Appointment_page .search_fild input,
+    .Appointment_page .search_fild {
+        width: 100%;
+    }
+    .Appointment_page .table_scroll{
+        overflow: scroll;
+    }
+    .Appointment_page .table_scroll table {
+        width: 200%;
+    }
+    .Appointment_page .table_page_list .pagination ul li.numb {
+        height: 22px;
+        width: 20px;
+        line-height: 21px;
+    }
+    .Appointment_page .table_page_list .pagination ul li {
+        line-height: 24px;
+        font-size: 14px;
+    }
+    .Rescheduled_Booking_Page h3 {
+        font-size: 18px;
+    }
+    .Rescheduled_Booking_Page .Rescheduled {
+        font-size: 15px;
+    }
+    .Rescheduled_Booking_Page .all_apoint_details .left_part form .inputFild input {
+        font-size: 14px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .location_detail input,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .location_detail input {
+        width: 84%;
+    }
+    .Similar_Doctors_Slider .similar_dr .dr_names h4 {
+        font-size: 15px;
+        text-align: start;
+    }
+    .Similar_Doctors_Slider .similar_dr .dr_names h5 {
+        font-size: 14px;
+    }
+    
+    .Similar_Doctors_Slider .similar_dr .language_digri,
+    .Similar_Doctors_Slider .similar_dr .dr_names ul li {
+        font-size: 14px;
+    }
+    .Appointment_Details_Page h3 {
+        font-size: 18px;
+    }
+    .Appointment_Details_Page .Rescheduled {
+        font-size: 15px;
+    }
+    .profile_title .profile_details .profile_img_bg .p-image {
+        padding: 5px 5px;
+    }
+    .Appointment_page .table_page_list .pagination ul li.btn {
+        padding: 0 10px;
+    }
+}
+ 
+@media (min-width: 481px) and (max-width: 767px) {
+    .Login_Form .left_part img {
+        height: 200px;
+        width: 200px;
+        margin: 20px 0px;
+    }
+    .Login_Form .right_part {
+        padding: 45px 50px;
+    }
+    .profile_title .profile_details .profile_img_bg .upload-button {
+        font-size: 12px;
+    }
+    .Login_Form .left_part img {
+        height: 190px;
+        width: 190px;
+        margin: 20px 0px;
+    }
+    .Login_Form .right_part {
+        padding: 39px 15px;
+    }
+    .Login_Form .right_part h3 {
+        font-size: 26px;
+    }   
+    .Login_Form .right_part .form_fild input{
+        font-size: 13px;
+    }
+    .Login_Form .right_part .form_fild .number_fild{
+        width: 80% !important;
+    }
+    .Login_Form .right_part form label {
+        font-size: 15px;
+    }
+    .Option_section select,
+    .Option_section h5 {
+        font-size: 12px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details h3,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details h3,
+    .Book_Appointment_page .left_part .Dr_details h3 {
+        font-size: 16px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details .location,
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details li, .Appointment_Details_Page .all_apoint_details .right_part .Dr_details h5,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details .location,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details ul li, .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details h5,
+    .Book_Appointment_page .left_part .Dr_details .location,
+    .Book_Appointment_page .left_part .Dr_details ul li,
+    .Book_Appointment_page .left_part .Dr_details h5 {
+        font-size: 15px;
+    }
+    .Book_Appointment_page .right_part .my_slider .slots_slider {
+        width: 77%;
+    }
+    .Appointment_page .search_fild input,
+    .Appointment_page .search_fild {
+        width: 100%;
+    }
+    .Appointment_page .table_scroll{
+        overflow: scroll;
+    }
+    .Appointment_page .table_scroll table {
+        width: 200%;
+    }
+    .Appointment_page .table_page_list .pagination ul li.numb {
+        height: 22px;
+        width: 20px;
+        line-height: 21px;
+    }
+    .Appointment_page .table_page_list .pagination ul li {
+        line-height: 24px;
+        font-size: 14px;
+    }
+    .Rescheduled_Booking_Page h3 {
+        font-size: 20px;
+    }
+    .Rescheduled_Booking_Page .Rescheduled {
+        font-size: 15px;
+    }
+    .Rescheduled_Booking_Page .all_apoint_details .left_part form .inputFild input {
+        font-size: 14px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .location_detail input,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .location_detail input {
+        width: 84%;
+    }
+}
+ 
+@media (min-width: 768px) and (max-width: 1023px){
+    .Login_Form .left_part img {
+        height: 300px;
+        width: 300px;
+        margin: 20px 0px;
+    }
+    .profile_title .profile_details .profile_img_bg .upload-button {
+        font-size: 12px;
+    }.Login_Form .left_part img {
+        height: 200px;
+        width: 200px;
+        margin: 20px 0px;
+    }
+    .Login_Form .right_part {
+        padding: 45px 50px;
+    }
+    .profile_title .profile_details .profile_img_bg .upload-button {
+        font-size: 12px;
+    }
+    .Login_Form .left_part img {
+        height: 190px;
+        width: 190px;
+        margin: 20px 0px;
+    }
+    .Login_Form .right_part {
+        padding: 39px 15px;
+    }
+    .Login_Form .right_part h3 {
+        font-size: 26px;
+    }   
+    .Login_Form .right_part .form_fild input{
+        font-size: 13px;
+    }
+    .Login_Form .right_part .form_fild .number_fild{
+        width: 80% !important;
+    }
+    .Login_Form .right_part form label {
+        font-size: 15px;
+    }
+    .Option_section select,
+    .Option_section h5 {
+        font-size: 12px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details h3,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details h3,
+    .Book_Appointment_page .left_part .Dr_details h3 {
+        font-size: 16px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details .location,
+    .Appointment_Details_Page .all_apoint_details .right_part .Dr_details li, .Appointment_Details_Page .all_apoint_details .right_part .Dr_details h5,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details .location,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details ul li, .Rescheduled_Booking_Page .all_apoint_details .right_part .Dr_details h5,
+    .Book_Appointment_page .left_part .Dr_details .location,
+    .Book_Appointment_page .left_part .Dr_details ul li,
+    .Book_Appointment_page .left_part .Dr_details h5 {
+        font-size: 15px;
+    }
+    .Book_Appointment_page .right_part .my_slider .slots_slider {
+        width: 77%;
+    }
+    .Appointment_page .search_fild input,
+    .Appointment_page .search_fild {
+        width: 100%;
+    }
+    .Appointment_page .table_scroll{
+        overflow: scroll;
+    }
+    .Appointment_page .table_scroll table {
+        width: 200%;
+    }
+    .Appointment_page .table_page_list .pagination ul li.numb {
+        height: 22px;
+        width: 20px;
+        line-height: 21px;
+    }
+    .Appointment_page .table_page_list .pagination ul li {
+        line-height: 24px;
+        font-size: 14px;
+    }
+    .Rescheduled_Booking_Page h3 {
+        font-size: 20px;
+    }
+    .Rescheduled_Booking_Page .Rescheduled {
+        font-size: 15px;
+    }
+    .Rescheduled_Booking_Page .all_apoint_details .left_part form .inputFild input {
+        font-size: 14px;
+    }
+    .Appointment_Details_Page .all_apoint_details .right_part .location_detail input,
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .location_detail input {
+        width: 84%;
+    }
+    .Rescheduled_Booking_Page .all_apoint_details .right_part .appointment_date h5,
+    .Appointment_Details_Page .all_apoint_details .right_part .appointment_date h5 {
+        font-size: 16px;
+    }
+}
+ 
+
+@media (min-width: 1024px) and (max-width: 1280px){
+    .Login_Form .right_part {
+        padding: 60px 50px;
+    }
+    nav ul li span {
+        color: #000;
+        font-size: 11px;
+        font-weight: 500;
+        font-family: "Montserrat", sans-serif;
+    }
+}
+ 
+@media (min-width: 1281px) and (max-width: 1440px) {
+    
+}

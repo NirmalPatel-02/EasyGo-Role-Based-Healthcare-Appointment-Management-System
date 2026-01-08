@@ -1,0 +1,111 @@
+@media (max-width: 480px) {
+    .header .logo img{
+        display: none;
+    }
+    .table_scroll{
+        overflow: scroll;
+    }
+    .Submit_custome_btn, 
+    .Cancel_custome_btn {
+        padding: 9px 25px;
+    }
+    .Appointments_Details .Upcoming_Appointments h3 {
+        font-size: 16px;
+    }
+    .pasent_request h5 {
+        font-size: 16px;
+    }
+    .pasent_request p {
+        font-size: 12px;
+    }
+    .pasent_request .Accept_btn,
+    .pasent_request .Reject_btn {
+        height: 30px;
+        font-size: 14px;
+    }
+    .table_page_list .pagination ul li.numb {
+        height: 22px;
+        width: 20px;
+        line-height: 21px;
+    }
+    .table_page_list .pagination ul li {
+        line-height: 24px;
+        font-size: 14px;
+    }
+    .DR_Name .search-bar {
+        min-width: 280px;
+        width: 100%;
+    }
+    .header .toggle-sidebar-btn {
+        padding-left: 0px;
+    }
+}
+ 
+@media (min-width: 481px) and (max-width: 767px) {
+    .header .logo img{
+        display: none;
+    }
+    .table_scroll{
+        overflow: scroll;
+    }
+    .Submit_custome_btn, 
+    .Cancel_custome_btn {
+        padding: 9px 25px;
+    }
+    .Appointments_Details .Upcoming_Appointments h3 {
+        font-size: 16px;
+    }
+    .pasent_request h5 {
+        font-size: 16px;
+    }
+    .pasent_request p {
+        font-size: 12px;
+    }
+    .pasent_request .Accept_btn,
+    .pasent_request .Reject_btn {
+        height: 30px;
+        font-size: 14px;
+    }
+    .table_page_list .pagination ul li.numb {
+        height: 22px;
+        width: 20px;
+        line-height: 21px;
+    }
+    .table_page_list .pagination ul li {
+        line-height: 24px;
+        font-size: 14px;
+    }
+    .DR_Name .search-bar {
+        min-width: 280px;
+        width: 100%;
+    }
+    .header .toggle-sidebar-btn {
+        padding-left: 0px;
+    }
+}
+ 
+@media (min-width: 768px) and (max-width: 1024px){
+    .sidebar .logo img{
+        display: none;
+    }
+    .table_scroll{
+        overflow: scroll;
+    }
+    .Submit_custome_btn, 
+    .Cancel_custome_btn {
+        padding: 9px 25px;
+    }
+}
+ 
+
+@media (min-width: 1025px) and (max-width: 1280px){
+    .sidebar .logo img{
+        display: none;
+    }
+}
+ 
+@media (min-width: 1281px) and (max-width: 1440px) {
+    .sidebar .logo img{
+        display: none;
+    }
+}
