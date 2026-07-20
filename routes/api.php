@@ -59,7 +59,7 @@ Route::get('/available-slots', [AppointmentController::class, 'getAvailableSlots
 // Route to fetch all details (conditions, experiences, languages, galleries) for a specific doctor
 Route::get('/doctor/{doctor_id}/details', [DoctorController::class, 'getDoctorConditions']);
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     Route::post('/submit-review', [AppointmentController::class, 'storeReview']);
     Route::get('/notifications', [UserController::class, 'notifications'])->name('notifications');
 
@@ -69,18 +69,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user/update', [UserController::class, 'updateUser'])->name('user.update');
     Route::post('/logout', [UserController::class, 'logoutMobile'])->name('logoutMobile');
     Route::get('/redirect-dashboard', [UserController::class, 'redirectToDashboardMobile'])->name('redirectDashboard');
-   
+
 
     Route::post('razorpay/create-order', [RazorpayController::class, 'createOrder']);
     Route::post('razorpay/verify-payment', [RazorpayController::class, 'verifyPayment']);
     // Doctors List and Search
     Route::get('/doctors', [UserController::class, 'doctorList'])->name('api.doctors.list');
-   
-    
-   
+
+
+
     Route::get('/slots/{id}', [SlotController::class, 'show']);
     /*
-    
+
     |--------------------------------------------------------------------------
     | Appointment Routes
     |--------------------------------------------------------------------------
@@ -89,11 +89,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/book', [AppointmentController::class, 'bookAppointment'])->name('appointments.book');
         Route::post('/{id}/cancel', [AppointmentController::class, 'cancelAppointment'])->name('appointments.cancel');
         Route::put('/{id}/update', [AppointmentController::class, 'updateAppointment'])->name('appointments.update'); // Route for updating an appointment
-    
+
         Route::get('/', [AppointmentController::class, 'getAppointments'])->name('appointments.list');
     });
-    
-    
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -116,7 +116,7 @@ Route::post('/doctor/update-data', [UserController::class, 'updateDoctorData']);
         Route::get('/withdrawals', [WithdrawalController::class, 'index'])->name('withdrawals');
 
         Route::post('/slots', [SlotController::class, 'store']);
-        
+
         Route::put('/slots/{id}', [SlotController::class, 'update']);
         Route::delete('/slots/{id}', [SlotController::class, 'destroy']);
         /*
@@ -165,7 +165,7 @@ POST   https://easygo.stgserver.site/api/appointments/book          # Book a new
 POST   https://easygo.stgserver.site/api/appointments/{id}/cancel   # Cancel an appointment (requires client role)
 PUT    https://easygo.stgserver.site/api/appointments/{id}/update   # Update an appointment's details (requires client role)
 GET    https://easygo.stgserver.site/api/appointments               # Get all appointments (client or doctor role)
-POST   https://easygo.stgserver.site/api/appointments/{id}/update-status 
+POST   https://easygo.stgserver.site/api/appointments/{id}/update-status
 # Allows a doctor to accept, reject, or complete an appointment
 
 ## Wallet Routes
