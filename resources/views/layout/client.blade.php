@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - Easygo</title>
     <meta name="description" content="{{ 'Default description for the site.' }}">
-    <meta property="og:image" content="{{ asset('asset/img/EasyGo_logo.svg') }}">
+    <meta property="og:image" content="{{ asset('asset/img/medisync_logo.png') }}">
+    @yield('page_head')
     <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/media.css') }}">
-    <link rel="icon" type="image/png" href="{{ asset('asset/img/EasyGo_logo.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('asset/img/medisync_logo.png') }}">
     <!-- Bootstrap Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -27,7 +28,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{{route('index')}}">
-                <img src="{{ asset('asset/img/EasyGo_logo.svg') }}" alt="">
+                <img src="@yield('navbar_logo', asset('asset/img/medisync_logo.png'))" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -160,7 +161,7 @@
             <div class="row mb-4">
                 <div class="col-12 col-lg-6 py-3">
                     <div>
-                        <img src="{{asset('asset/img/EasyGo_logo.svg')}}" alt="">
+                        <img src="{{asset('asset/img/medisync_logo.png')}}" alt="">
                         <p class="grey_f">We ara a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut labore exercitation ullamco laboris nisi ut aliquip ex ea
                             commodo consequat<span class="dots">...</span><span class="more" style="display: none;">,

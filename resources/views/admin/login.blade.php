@@ -19,7 +19,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <img src="{{asset('admin-asset/dist/img/easy_go.png')}}" width="110px" height="110px">
+      <img src="{{asset('asset/img/medisync_logo.png')}}" width="110px" height="110px">
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in Now</p>

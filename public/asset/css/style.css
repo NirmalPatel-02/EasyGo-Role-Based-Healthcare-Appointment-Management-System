@@ -27,6 +27,15 @@ a {
     text-decoration: none !important;
 }
 
+/* Keep the large Medisync source image at a consistent logo size on every public page. */
+img[src*="medisync_logo"] {
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    max-height: 56px;
+    object-fit: contain;
+}
+
 nav ul li {
     display: flex;
     align-items: center;

@@ -14,7 +14,7 @@
         content="Sign up for the Easy Go Doctors App to connect with patients, manage your schedule, and enhance your healthcare practice. Join our community of professionals today!" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ asset('asset/img/easy_go_og.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('asset/img/EasyGo_logo.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('asset/img/medisync_logo.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Stylesheets -->
@@ -45,7 +45,7 @@
                 <div class="h-100 d-flex justify-content-between flex-column">
                     <div class="right_part h-100">
                         <div class="mb-3 text-center text-lg-start">
-                        <a href="/"><img src="{{ asset('asset/img/EasyGo_logo.svg') }}" alt="" /></a>
+                        <a href="/"><img src="{{ asset('asset/img/medisync_logo.png') }}" alt="" /></a>
                         </div>
                         <div class="text-center text-lg-start">
                             <h3>Login</h3>

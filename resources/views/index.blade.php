@@ -2,6 +2,19 @@
 
 @section('title', 'Ready for Better Health? Find Your Doctor Here')
 
+@section('navbar_logo', asset('asset/img/medisync_logo.png'))
+
+@section('page_head')
+<style>
+    .navbar-brand img {
+        width: 150px;
+        height: auto;
+        max-height: 56px;
+        object-fit: contain;
+    }
+</style>
+@endsection
+
 @section('content')
 @include('search')
 

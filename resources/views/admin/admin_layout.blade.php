@@ -79,7 +79,7 @@ Navbar -->
   <aside class="main-sidebar elevation-4" style="background-color: #f8f8f8;overflow:hidden">
     <!-- Brand Logo -->
     <a href="{{route('adminDashboard')}}" class="brand-link">
-       <img src="{{asset('admin-asset/dist/img/easy_go.png') }}" alt="EasyGO Logo" class="" style="opacity: .8;width:200px"> 
+       <img src="{{asset('asset/img/medisync_logo.png') }}" alt="EasyGO Logo" class="" style="opacity: .8;width:200px"> 
       <span class="brand-text font-weight-light" style="color: white;">EasyGO</span>
     </a>
 
