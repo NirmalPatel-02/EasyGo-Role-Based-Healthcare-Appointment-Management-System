@@ -255,17 +255,17 @@ public function storeNotification(Request $request)
 }
 
 public function update(Request $request, $id)
-{
-    $request->validate([
-        'status' => 'required|in:Approved,Rejected,Blocked,Pending',
-    ]);
+  {
+      $request->validate([
+          'status' => 'required|in:Rejected',
+      ]);
 
     $review = Review::findOrFail($id);
     $review->status = $request->status;
     $review->save();
 
-    return redirect()->back()->with('success', 'Review status updated successfully.');
-}
+      return redirect()->back()->with('success', 'Review removed from public ratings successfully.');
+  }
 
     // Show the admin login form
     public function showLoginForm()

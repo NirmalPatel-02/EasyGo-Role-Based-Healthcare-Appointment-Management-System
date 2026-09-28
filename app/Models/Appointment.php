@@ -29,8 +29,8 @@ class Appointment extends Model
      // Doctor relationship
     public function review()
      {
-         return $this->belongsTo(Review::class, 'appointment_id');
-    }
+         return $this->hasOne(Review::class, 'appointment_id');
+     }
 
     public function refunds()
     {

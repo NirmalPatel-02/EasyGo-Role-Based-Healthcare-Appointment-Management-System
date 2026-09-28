@@ -26,8 +26,10 @@ class AppointmentController extends Controller
             $hashid = $request->hashid;
             $doctor = User::whereRaw('SHA1(id) = ?', [$hashid])->firstOrFail();
             
-            // Manually load reviews
-            $doctor->reviews = Review::where('doctor_id', $doctor->id)->get();
+            // Only approved reviews are public and contribute to the rating.
+            $doctor->reviews = Review::where('doctor_id', $doctor->id)
+                ->where('status', 'Approved')
+                ->get();
         
             // Instantiate DoctorController and call the findSimilarDoctors method
             $similarDoctors = $this->findSimilarDoctors([
@@ -132,7 +134,7 @@ public function view(Request $request)
         $doctor = $appointment->doctor;
         $dated = $appointment->dated;
         $slot = $appointment->time_slot;
-        $reviews = Review::where('doctor_id', $doctor->id)->get();
+        $reviews = Review::where('doctor_id', $doctor->id)->where('status', 'Approved')->get();
         // Pass the appointment data to the respective view
         return view($view, compact('appointment', 'dated', 'slot', 'doctor'));
     } else {
@@ -438,7 +440,10 @@ $appointments->when($request->has('query'), function ($query) use ($request) {
     $appointments = $appointments->paginate($perPage);
 
     $appointments->getCollection()->transform(function ($appointment) {
-        $appointment->review = Review::where('appointment_id', $appointment->id)->where('status','Approved')->first() ?? null;
+        // A client must see a removed review too, so the review button is never
+        // offered again for the same appointment. Public doctor ratings are
+        // filtered to Approved reviews in the doctor-facing queries above.
+        $appointment->review = Review::where('appointment_id', $appointment->id)->first();
         return $appointment;
     });
     
@@ -509,7 +514,7 @@ public function doctorDashboard(Request $request)
 
 
     
-    public function storeReview(Request $request)
+public function storeReview(Request $request)
 {
     $request->validate([
         'appointment_id' => 'required|exists:appointments,id',
@@ -517,28 +522,40 @@ public function doctorDashboard(Request $request)
         'remarks' => 'nullable|string|max:255',
     ]);
 
-    $appointment = Appointment::findOrFail($request->appointment_id);
+    try {
+        DB::transaction(function () use ($request) {
+            // Locking the appointment makes the existence check and insert one
+            // atomic operation, including when a user submits twice at once.
+            $appointment = Appointment::lockForUpdate()->findOrFail($request->appointment_id);
 
-    // Check if appointment status is 'Completed'
-    if ($appointment->status != 'Completed') {
-        return response()->json(['message' => 'Only completed appointments can be reviewed.'], 400);
+            if ($appointment->client_id !== Auth::id()) {
+                abort(403, 'You can only review your own appointment.');
+            }
+
+            if ($appointment->status !== 'Completed') {
+                abort(400, 'Only completed appointments can be reviewed.');
+            }
+
+            // Check every status. A review removed by an administrator remains
+            // tied to its appointment and cannot be submitted again.
+            if (Review::where('appointment_id', $appointment->id)->exists()) {
+                abort(400, 'A review has already been submitted for this appointment.');
+            }
+
+            Review::create([
+                'doctor_id' => $appointment->doctor_id,
+                'client_id' => $appointment->client_id,
+                'appointment_id' => $appointment->id,
+                'star' => $request->star,
+                'remarks' => $request->remarks,
+                'status' => 'Approved',
+            ]);
+        });
+    } catch (\Symfony\Component\HttpKernel\Exception\HttpException $exception) {
+        return response()->json(['message' => $exception->getMessage()], $exception->getStatusCode());
     }
 
-    // Check if review already exists
-    if ($appointment->review) {
-        return response()->json(['message' => 'A review already exists for this appointment.'], 400);
-    }
-
-    // Store the review
-    $review = new Review();
-    $review->doctor_id = $appointment->doctor_id;
-    $review->client_id = $appointment->client_id;
-    $review->appointment_id = $appointment->id;
-    $review->star = $request->star;
-    $review->remarks = $request->remarks;
-    $review->save();
-
-    return response()->json(['message' => 'Review submitted successfully.'], 200);
+    return response()->json(['message' => 'Review submitted and published successfully.'], 200);
 }
 
 

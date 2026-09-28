@@ -197,9 +197,12 @@
         </div>
 
         <!-- Remarks -->
-        <div class="remarks">
+                <div class="remarks">
             <p><strong>Remarks:</strong> <em>{{ $row->review->remarks }}</em></p>
         </div>
+        @if($row->review->status === 'Rejected')
+            <p class="text-muted mb-0">This review has been removed from public ratings.</p>
+        @endif
     </div>
                 @else
                     @if($row->status == 'Completed')

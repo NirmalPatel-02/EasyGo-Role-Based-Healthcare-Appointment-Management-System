@@ -112,20 +112,16 @@
                                             </span>
                                         </td>
                                         <td>
-                                         
-                                                <form action="{{ route('reviews.update', $review->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <input type="hidden" name="status" value="Approved">
-                                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                                </form>
+                                            @if($review->status !== 'Rejected')
                                                 <form action="{{ route('reviews.update', $review->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('PUT')
                                                     <input type="hidden" name="status" value="Rejected">
-                                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this review from public ratings?')">Remove</button>
                                                 </form>
-                                          
+                                            @else
+                                                <span class="text-muted">Removed</span>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
