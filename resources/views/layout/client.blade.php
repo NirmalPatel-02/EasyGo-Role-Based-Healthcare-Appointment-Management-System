@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') - Easygo</title>
+    <title>@yield('title') - MediSync</title>
     <meta name="description" content="{{ 'Default description for the site.' }}">
     <meta property="og:image" content="{{ asset('asset/img/medisync_logo.png') }}">
     @yield('page_head')
@@ -162,12 +162,9 @@
                 <div class="col-12 col-lg-6 py-3">
                     <div>
                         <img src="{{asset('asset/img/medisync_logo.png')}}" alt="">
-                        <p class="grey_f">We ara a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat<span class="dots">...</span><span class="more" style="display: none;">,
-                                erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor
-                                vitae massa.</span> <span onclick="myFunction(this)" class="myBtn blue_f"
-                                style="cursor: pointer;">Read more</span></p>
+                        <p class="grey_f">MediSync is a healthcare appointment platform that helps clients find
+                            doctors book available time slots, and manage appointments. Doctors can manage their schedules<br>
+                            and requests, while admins oversee platform operations.</p>
                         <div class="d-flex gap-3">
                             <a href="#">
                                 <div class="social_icon d-flex justify-content-center align-items-center">
@@ -242,7 +239,7 @@
                 </div>
             </div>
             <div class="rightes_line pt-3 text-center">
-                <p class="mb-0">© 2000-2024, All Rights Reserved - Easy Go</p>
+                <p class="mb-0">© 2026, All Rights Reserved - MediSync</p>
             </div>
         </div>
     </footer>

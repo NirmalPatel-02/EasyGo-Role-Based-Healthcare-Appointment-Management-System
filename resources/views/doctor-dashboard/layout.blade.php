@@ -50,7 +50,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="dashboard" class="logo d-flex align-items-center justify-content-center">
-        <img src="{{asset('asset/img/medisync_logo.png')}}" alt="" class="w-50">
+        <img src="{{asset('asset/img/medisync_logo.png')}}" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -320,7 +320,7 @@
 {{-- 
   <footer id="footer" class="footer">
     <div class="credits">
-      © EasyGo Inc 2024
+      © MediSync Inc 2026
     </div>
   </footer> --}}
 

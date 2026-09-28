@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ 'EASYGO - ' . @yield('title') }}</title>
+    <title>{{ 'MediSync - ' . @yield('title') }}</title>
     <meta name="description" content="{{ 'Default description for the site.' }}">
     <meta property="og:image" content="{{ asset('asset/img/medisync_logo.png') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
@@ -139,14 +139,9 @@
                     <div>
                         <img src="{{ asset('asset/img/medisync_logo.png') }}" alt="">
                         <p class="grey_f">
-                            We are a lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat
-                            <span class="dots">...</span><span class="more" style="display: none;">, erisque enim
-                                ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae
-                                massa.</span>
-                            <span onclick="myFunction(this)" class="myBtn blue_f" style="cursor: pointer;">Read
-                                more</span>
+                            MediSync is a healthcare appointment platform that helps clients find doctors, book available
+                            time slots, and manage appointments. Doctors can manage their schedules and requests, while
+                            admins oversee platform operations.
                         </p>
                         <div class="d-flex gap-3">
                             <a href="#">

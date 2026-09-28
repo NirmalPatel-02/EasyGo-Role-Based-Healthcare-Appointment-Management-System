@@ -63,7 +63,7 @@
                             <!-- Address Section -->
                             <div class="mb-3">
                                 <h6 class="fw-bold">Address</h6>
-                                <p class="text-muted">123 EasyGo Street<br>City, State, ZIP<br>Country</p>
+                                <p class="text-muted">123 MediSync Street<br>City, State, ZIP<br>Country</p>
                             </div>
                             <!-- Support/Sales Contacts Section -->
                             <div class="mb-3">
@@ -77,8 +77,8 @@
                             <div>
                                 <h6 class="fw-bold">Emails</h6>
                                 <p class="text-muted">
-                                    Support: <a href="mailto:support@easygo.com" class="text-primary">support@easygo.com</a><br>
-                                    Sales: <a href="mailto:sales@easygo.com" class="text-primary">sales@easygo.com</a>
+                                    Support: <a href="mailto:support@easygo.com" class="text-primary">support@medisync.com</a><br>
+                                    Sales: <a href="mailto:sales@easygo.com" class="text-primary">sales@medisync.com</a>
                                 </p>
                             </div>
                         </div>

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>It's Quick to Sign Up – Join Us Now!</title>
     <meta name="description"
-        content="Sign up for the Easy Go Doctors App to connect with patients, manage your schedule, and enhance your healthcare practice. Join our community of professionals today!">
+        content="Sign up for the MediSync Doctors App to connect with patients, manage your schedule, and enhance your healthcare practice. Join our community of professionals today!">
     <meta property="og:title" content="It's Quick to Sign Up – Join Us Now!" />
-    <meta property="og:site_name" content="Easy Go" />
+    <meta property="og:site_name" content="MediSync" />
     <meta property="og:url" content="{{ url('sign_up') }}" />
     <meta property="og:description"
-        content="Sign up for the Easy Go Doctors App to connect with patients, manage your schedule, and enhance your healthcare practice. Join our community of professionals today!" />
+        content="Sign up for the MediSync Doctors App to connect with patients, manage your schedule, and enhance your healthcare practice. Join our community of professionals today!" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ asset('asset/img/easy_go_og.png') }}" />
     <link rel="icon" type="image/png" href="{{ asset('asset/img/medisync_logo.png') }}">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="Copyright text-center pb-3">
-                        <p class="mb-0">© Copyright 2024. - All rights reserved</p>
+                        <p class="mb-0">© Copyright 2026. - All rights reserved</p>
                     </div>
                 </div>
             </div>

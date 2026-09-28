@@ -236,7 +236,7 @@
               </div>
               <div>
                 <p class="mb-1"> Date </p>
-                <h5 id="modal-dated">30/08/2024</h5>
+                <h5 id="modal-dated">30/08/2026</h5>
               </div>
               <div>
                 <p class="mb-1">Time</p>

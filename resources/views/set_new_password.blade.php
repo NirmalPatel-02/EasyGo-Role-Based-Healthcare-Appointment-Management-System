@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Go</title>
+    <title>MediSync</title>
     <link rel="stylesheet" href="{{asset('asset/css/style.scss')}}">
     <link rel="stylesheet" href="{{asset('asset/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('asset/css/media.css')}}">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <div class="Copyright text-center pb-3">
-                        <p class="mb-0">© Copyright 2024.  - All rights reserved</p>
+                        <p class="mb-0">© Copyright 2026.  - All rights reserved</p>
                     </div>
                 </div>
             </div>

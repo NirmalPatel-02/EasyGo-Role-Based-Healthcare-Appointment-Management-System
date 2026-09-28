@@ -79,8 +79,8 @@ Navbar -->
   <aside class="main-sidebar elevation-4" style="background-color: #f8f8f8;overflow:hidden">
     <!-- Brand Logo -->
     <a href="{{route('adminDashboard')}}" class="brand-link">
-       <img src="{{asset('asset/img/medisync_logo.png') }}" alt="EasyGO Logo" class="" style="opacity: .8;width:200px"> 
-      <span class="brand-text font-weight-light" style="color: white;">EasyGO</span>
+      <img src="{{asset('asset/img/medisync_logo.png') }}" alt="MediSync Logo" class="" style="opacity: .8;width:200px"> 
+          <span class="brand-text font-weight-light" style="color: white;">MediSync</span>
     </a>
 
     <!-- Sidebar -->
@@ -332,7 +332,7 @@ Navbar -->
 
 
   {{-- <footer class="main-footer">
-    <strong>Copyright &copy; 2001-2024 <a href="">Easy Go</a>.</strong>
+    <strong>Copyright &copy; 2001-2026 <a href="">MediSync</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0

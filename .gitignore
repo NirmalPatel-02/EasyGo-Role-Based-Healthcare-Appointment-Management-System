@@ -16,3 +16,6 @@ yarn-error.log
 /.vscode
 admin-asset/plugins
 public/admin-asset/plugins
+*.example
+.env.example
+.env.example
