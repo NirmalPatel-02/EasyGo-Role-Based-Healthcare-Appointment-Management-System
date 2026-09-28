@@ -306,12 +306,12 @@ Navbar -->
 
 
     <!-- Logout -->
-    <li class="nav-item pb-5 mb-5">
+    {{-- <li class="nav-item pb-5 mb-5">
       <a href="{{ route('admin.change-password.update') }}" class="nav-link">
         <i class="nav-icon fas fa-key"></i>
         <p>Change Password</p>
       </a>
-    </li>
+    </li> --}}
 
   </ul>
   <div class="mt-5 mb-5">&nbsp;</div>
