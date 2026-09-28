@@ -4,7 +4,7 @@
 @section('content')
 
 <!-- OPTIONS SECTION STRAT -->
-<section class="Option_section py-3">
+{{-- <section class="Option_section py-3">
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-6 col-lg-3">
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- OPTIONS SECTION END -->
 
 <!-- PROFILE TITLE SECTION START -->

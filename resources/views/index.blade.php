@@ -12,6 +12,90 @@
         max-height: 56px;
         object-fit: contain;
     }
+
+    .client-search-section { background: #fff; border-bottom: 1px solid #edf0f3; }
+    .client-search-form .search_field {
+        height: 48px;
+        background: #fff;
+        border-color: #d7dee6;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+    .client-search-form .custum_search_btn {
+        width: 100%;
+        height: 48px;
+        border: 0;
+        border-radius: 8px;
+        background: #075ca8;
+        box-shadow: none;
+    }
+    .client-search-form .custum_search_btn:hover { background: #064d8d; }
+
+    .doctor-discovery { padding: 24px 0 48px; background: #fafbfc; }
+    .doctor-discovery .doctor-toolbar {
+        background: #fff;
+        border: 1px solid #e5edf5;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(20, 49, 78, .04);
+    }
+    .doctor-toolbar { min-height: 62px; }
+    .doctor-toolbar #msg { margin-right: auto; font-size: 14px; color: #56677a; }
+    .doctor-view-control { display: flex; align-items: center; gap: 8px; margin-left: auto; padding-right: 8px; }
+    .doctor-view-control label { font-size: 13px; color: #65758a; white-space: nowrap; }
+    .doctor-view-control select { border: 1px solid #d7e0ea; border-radius: 7px; padding: 7px 28px 7px 9px; color: #31465e; background: #fff; font-size: 13px; }
+
+    .All_Dr_details { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
+    .All_Dr_details .Dr_details { margin: 0 !important; padding: 18px !important; background: #fff; border: 1px solid #e2e9f0 !important; box-shadow: 0 4px 14px rgba(20, 49, 78, .04) !important; }
+    .All_Dr_details .Dr_details > .row { align-items: center; }
+    .All_Dr_details .Dr_details > .row > div { padding-top: 0 !important; padding-bottom: 0 !important; }
+    .All_Dr_details .Dr_details img { width: 220px !important; height: 220px; object-fit: cover; border: 4px solid #fff; border-radius: 12px; box-shadow: 0 5px 14px rgba(24, 55, 86, .16); }
+    .All_Dr_details .Dr_details h3 { font-size: 19px !important; margin-bottom: 8px; }
+    .All_Dr_details .Dr_details h5, .All_Dr_details .Dr_details li, .All_Dr_details .Dr_details .location { font-size: 14px !important; }
+    .All_Dr_details .Dr_details .location { margin: 8px 0 !important; }
+    .All_Dr_details .Dr_details .location svg { width: 18px; height: 18px; }
+    .All_Dr_details .Dr_details .grey_f { font-size: 14px; margin: 12px 0; }
+    .All_Dr_details .Dr_details .row.mt-3 { margin-top: 10px !important; }
+    .All_Dr_details .Dr_details .Book_Appointment_btn, .All_Dr_details .Dr_details .Call_Doctor_btn { height: 40px !important; font-size: 14px !important; }
+    .doctor-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doctor-grid--2 .Dr_details > .row { display: block; }
+    .doctor-grid--2 .Dr_details > .row > div { width: 100%; max-width: 100%; }
+    .doctor-grid--2 .Dr_details img {
+        width: 100% !important;
+        height: 210px;
+        margin-bottom: 14px;
+        border: 0;
+        border-radius: 12px;
+        background: #f3f6f8;
+        box-shadow: 0 4px 12px rgba(24, 55, 86, .12);
+    }
+    .doctor-grid--2 .Dr_details .row.mt-3 {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+        margin: 12px 0 0 !important;
+    }
+    .doctor-grid--2 .Dr_details .row.mt-3 > div {
+        width: auto !important;
+        max-width: none !important;
+        flex: none !important;
+        padding: 0 !important;
+    }
+    .doctor-grid--2 .Dr_details .row.mt-3 > div:first-child { grid-column: 1 / -1; }
+    .doctor-grid--2 .Dr_details .Book_Appointment_btn,
+    .doctor-grid--2 .Dr_details .Call_Doctor_btn { width: 100%; }
+    .doctor-discovery .pagination { display: flex; justify-content: center; width: 100%; }
+    .doctor-discovery .pagination ul { width: auto !important; margin: 0 auto !important; justify-content: center; }
+    .doctor-discovery .table_page_list { width: 100%; }
+    .All_Dr_details > .py-4 { grid-column: 1 / -1; }
+    @media (max-width: 767.98px) {
+        .doctor-toolbar { justify-content: flex-start !important; }
+        .doctor-toolbar #msg { width: 100%; order: 3; }
+        .doctor-view-control { margin-left: 0; }
+        .doctor-grid--2 { grid-template-columns: 1fr; }
+        .All_Dr_details .Dr_details > .row > div { width: 100%; max-width: 100%; }
+        .All_Dr_details .Dr_details img { width: 130px !important; height: 130px; }
+    }
 </style>
 @endsection
 
@@ -20,12 +104,12 @@
 
 
 <!-- DOCTORE LIST SECTION STRAT -->
-<section class="Docter_Section dataTable">
+<section class="Docter_Section dataTable doctor-discovery">
     <div class="container">
-        <div class="row">
-            <div class="col-md-7 col-lg-8">
+        <div class="row g-4">
+            <div class="col-12">
                 <div class="left_part">
-                    <div class="filter_part d-flex flex-wrap justify-content-md-start justify-content-center gap-3 p-2">
+                    <div class="filter_part doctor-toolbar d-flex flex-wrap justify-content-md-start justify-content-center gap-3 p-2">
                         <div class="filter_fild ">
                             <div class="dropdown-center">
                                 <button class="border-0 outline-0 bg-white" type="button" data-bs-toggle="dropdown"
@@ -103,10 +187,18 @@
     ?>
 </div>
 
+<div class="doctor-view-control">
+    <label for="doctor-view">View</label>
+    <select id="doctor-view" aria-label="Doctor list view">
+        <option value="1">1 per row</option>
+        <option value="2">2 per row</option>
+    </select>
+</div>
+
 
                     </div>
 
-                    <div class="All_Dr_details Appointment_page  .">
+                    <div id="doctor-list" class="All_Dr_details Appointment_page">
                         
                     @foreach($doctors as $doctor)
                                     @include('doctor', ['showAppointmentButton' => true])
@@ -117,10 +209,7 @@
 
     <!-- Pagination Links -->
     <div class="py-4">
-            <div class="d-flex justify-content-between flex-wrap">
-                <div class="py-3">
-             
-                </div>
+            <div class="d-flex justify-content-center flex-wrap">
                 <div class="table_page_list py-3">
                     <div class="pagination">
                         <ul> <!--pages or li are comes from javascript --> </ul>
@@ -129,46 +218,6 @@
             </div>
         </div>
 </div>
-
-                </div>
-            </div>
-            <div class="col-md-5 col-lg-4">
-                <div class="right_part">
-
-                <div class="top_health_tips my-3 py-5 px-4">
-    <div class="text-center">
-        <h3 class="red_f">Health Tips</h3>
-    </div>
-    @php
-        // Use DB facade to query the pages table
-        $pages = DB::table('pages')
-                    ->where('show_tips', 1)
-                    ->where('published', 'Published')
-                    ->get();
-    @endphp
-    <hr>
-    <div id="health-tips-container">
-        @foreach($pages as $key => $page)
-        <a href="{{ route('pages.show', $page->slug) }}" 
-           class="link-underline link-underline-opacity-0 text-dark health-tip-item {{ $key >= 10 ? 'hidden-tip' : '' }}">
-            <h5>{{ ucfirst(strtolower($page->title)) }}</h5>
-        </a>
-        <hr class="{{ $key >= 10 ? 'hidden-tip' : '' }}">
-        @endforeach
-    </div>
-    @if(count($pages) > 10)
-    <div class="text-center">
-        <button id="view-more-btn" class="btn btn-primary">View More</button>
-    </div>
-    @endif
-</div>
-
-<!-- Optional styling for hidden tips -->
-<style>
-    .hidden-tip {
-        display: none;
-    }
-</style>
 
                 </div>
             </div>
@@ -181,6 +230,34 @@
 @section('scripts')
 
     <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const doctorList = document.getElementById('doctor-list');
+        const viewSelect = document.getElementById('doctor-view');
+        if (!doctorList || !viewSelect) return;
+
+        const savedView = localStorage.getItem('doctor-list-view') === '2' ? '2' : '1';
+        viewSelect.value = savedView;
+        const currentUrl = new URL(window.location.href);
+        const expectedPerPage = savedView === '2' ? '16' : '10';
+        if (currentUrl.searchParams.get('per_page') !== expectedPerPage) {
+            currentUrl.searchParams.set('per_page', expectedPerPage);
+            currentUrl.searchParams.delete('page');
+            window.location.replace(currentUrl.toString());
+            return;
+        }
+        const applyView = function (value) {
+            doctorList.className = 'All_Dr_details Appointment_page doctor-grid--' + value;
+        };
+        applyView(savedView);
+        viewSelect.addEventListener('change', function () {
+            localStorage.setItem('doctor-list-view', this.value);
+            const url = new URL(window.location.href);
+            url.searchParams.set('per_page', this.value === '2' ? '16' : '10');
+            url.searchParams.delete('page');
+            window.location.href = url.toString();
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         const input = document.getElementById('nearby-location');
         const list = document.getElementById('nearby-location-list');
@@ -256,21 +333,6 @@
                 list.style.display = 'none';
             }
         });
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const viewMoreBtn = document.getElementById('view-more-btn');
-        const hiddenTips = document.querySelectorAll('.hidden-tip');
-
-        if (viewMoreBtn) {
-            viewMoreBtn.addEventListener('click', function () {
-                hiddenTips.forEach(function (tip) {
-                    tip.style.display = 'block';
-                });
-                viewMoreBtn.style.display = 'none'; // Hide the "View More" button after showing tips
-            });
-        }
     });
 
     $(document).ready(function () {

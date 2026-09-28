@@ -25,7 +25,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg client-header">
         <div class="container">
             <a class="navbar-brand" href="{{route('index')}}">
                 <img src="@yield('navbar_logo', asset('asset/img/medisync_logo.png'))" alt="">
@@ -37,14 +37,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#"><span>Get The App</span></a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="#" id="fav"><span><svg width="18" height="14" class="me-2" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5225 13.9998L8.12918 13.7637C7.79838 13.5651 0.0313717 8.85288 0.0313717 4.60391C-0.00784573 4.01064 0.0835658 3.41614 0.299928 2.85733C0.516291 2.29854 0.852984 1.78739 1.2891 1.35563C1.72521 0.923863 2.25141 0.58071 2.83506 0.347479C3.41869 0.114249 4.04729 -0.00407712 4.68179 -0.000149175C5.41815 0.00548101 6.14411 0.163175 6.80796 0.461698C7.47183 0.760219 8.05725 1.19222 8.5225 1.72693C8.98791 1.19224 9.57346 0.760259 10.2374 0.461744C10.9014 0.163227 11.6274 0.00551942 12.3639 -0.000149175C12.9984 -0.00408311 13.6269 0.114244 14.2105 0.347481C14.7941 0.580718 15.3203 0.923883 15.7564 1.35566C16.1924 1.78743 16.529 2.2986 16.7453 2.85739C16.9616 3.41618 17.0529 4.01066 17.0136 4.60391C17.0136 8.85288 9.24661 13.5651 8.91649 13.7637L8.5225 13.9998Z" fill="#01A601"></path>
-                                </svg> Doctors</span></a>
-                    </li>
                     @guest
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="{{ route('login') }}">
@@ -140,6 +132,17 @@
                         </li>
                     @endauth
                 </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="client-primary-nav" aria-label="Client navigation">
+        <div class="container">
+            <div class="client-primary-nav__links">
+                <a href="{{ route('index') }}" class="{{ request()->routeIs('index', 'searchDoctors', 'searchDoctors2') ? 'active' : '' }}">Home</a>
+                <a href="{{ route('client.appointments') }}" class="{{ request()->routeIs('client.appointments') ? 'active' : '' }}">My Appointments</a>
+                <a href="{{ route('health.tips') }}" class="{{ request()->routeIs('health.tips', 'pages.show') ? 'active' : '' }}">Health Tips</a>
+                <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -267,7 +270,44 @@ $('#locality').val("{{$locality}}");
     
 @yield('scripts')
 
-<style>.search_field {
+<style>
+    /* Shared client header: identity on the left, account actions on the right. */
+    .client-header {
+        min-height: 84px;
+        background: #fff;
+        border-bottom: 1px solid #e8edf3;
+        box-shadow: 0 2px 10px rgba(20, 49, 78, .04);
+    }
+    .client-header .navbar-brand img { max-height: 52px; width: auto; }
+    .client-header .navbar-nav { align-items: center; }
+    .client-primary-nav {
+        background: #f8fafc;
+        border-bottom: 1px solid #e8edf3;
+    }
+    .client-primary-nav__links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        min-height: 62px;
+    }
+    .client-primary-nav a {
+        color: #466078;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 7px;
+        text-decoration: none;
+        transition: color .2s ease, background-color .2s ease;
+    }
+    .client-primary-nav a:hover { color: #075ca8; background: #f1f7fd; }
+    .client-primary-nav a.active { color: #075ca8; background: #e6f1fb; box-shadow: inset 0 -2px 0 #075ca8; }
+    @media (max-width: 575.98px) {
+        .client-primary-nav__links { justify-content: flex-start; overflow-x: auto; padding: 8px 0; }
+        .client-primary-nav a { white-space: nowrap; padding: 8px 13px; }
+    }
+
+    .search_field {
     position: relative;  /* Ensure the list is positioned relative to the search field */
 }
 

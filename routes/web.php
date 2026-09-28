@@ -29,6 +29,7 @@ Route::get('/get-city', [LocalityController::class, 'getCity']);
 Route::get('/', [UserController::class, 'searchDoctors'])->name('index');
 Route::post('/search', [UserController::class, 'searchDoctors'])->name('searchDoctors');
 Route::get('/search', [UserController::class, 'searchDoctors'])->name('searchDoctors2');
+Route::get('/health-tips', [PageController::class, 'healthTips'])->name('health.tips');
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('pages.show');
 Route::get('/signup', fn () => view('signup'))->name('signup');
 Route::get('/login', [UserController::class, 'loginView'])->name('login');

@@ -861,7 +861,10 @@ if ($request->has('city')) {
     }
 
     // Fetch doctors based on the search criteria
-    $doctors = $query->paginate(10);
+    $perPage = in_array((int) $request->input('per_page', 10), [10, 16], true)
+        ? (int) $request->input('per_page', 10)
+        : 10;
+    $doctors = $query->paginate($perPage)->appends($request->query());
     
     // Fetch all specialities
     $specialities = Speciality::pluck('title');

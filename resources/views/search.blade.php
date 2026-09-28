@@ -1,59 +1,10 @@
-<section class="Option_section py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-6 col-md-6 col-lg-3">
-                <div class="d-flex align-items-center">
-                    <div class="me-2">
-                        <img src="{{asset('asset/img/Book_Appointment.svg')}}" alt="">
-                    </div>
-                    <div>
-                        <h5 class="mb-0 black_f">Book Appointment</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-6 col-lg-3">
-                <div class="d-flex align-items-center">
-                    <div class="me-0">
-                        <img src="{{asset('asset/img/Treatment.svg')}}" alt="">
-                    </div>
-                    <div>
-                        <h5 class="mb-0 black_f">Treatment</h5>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-6 col-lg-3">
-                <div class="d-flex align-items-center">
-                    <div class="me-2">
-                        <img src="{{asset('asset/img/Plan_surgery.svg')}}" alt="">
-                    </div>
-                    <div>
-                        <h5 class="mb-0 black_f">Plan my Surgery</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-6 col-lg-3">
-                <div class="d-flex align-items-center">
-                    <div class="me-2">
-                        <img src="{{asset('asset/img/Ask_Question.svg')}}" alt="">
-                    </div>
-                    <div>
-                        <h5 class="mb-0 black_f">Ask a Question</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- OPTIONS SECTION END -->
-
 <!-- SEARCH SECTION STRAT -->
-<form id="search-form" method="GET" action="{{ route('searchDoctors') }}">
+<form id="search-form" class="client-search-form" method="GET" action="{{ route('searchDoctors') }}">
 @csrf
-<section class="search_section py-3">
+<section class="search_section client-search-section py-4">
     
     <div class="container">
-        <div class="row">
+        <div class="row g-3 align-items-end">
         <div class="col-md-4 col-lg-3 py-2 py-lg-0">
     <div class="search_field d-flex align-items-center position-relative px-3">
         <input type="text" placeholder="Enter City" id="city" name="city" data-city-id="" value="{{ request('city', old('city')) }}" autocomplete="off">
@@ -143,4 +94,3 @@
 
 
  </style>
- 

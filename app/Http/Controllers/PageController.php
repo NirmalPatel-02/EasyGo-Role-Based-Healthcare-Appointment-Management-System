@@ -5,6 +5,16 @@ use App\Models\Page;
 use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
+
+public function healthTips()
+{
+    $pages = Page::where('show_tips', 1)
+        ->where('published', 'Published')
+        ->latest()
+        ->get();
+
+    return view('health_tips', compact('pages'));
+}
     
 // Method to display page by slug
 public function show($slug)
