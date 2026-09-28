@@ -119,7 +119,7 @@
 </a>
                             <button class="btn btn-warning btn-sm update-status" data-id="{{ $row->id }}" data-status="Completed">Complete</button>
                         @else
-                            <span class="text-muted">{{ $row->status }}</span>
+                            <span class="text-muted">{{ $row->status === 'Cancellation Requested' ? 'Cancellation/refund under admin review' : $row->status }}</span>
                         @endif
                     </td>
 <td>
@@ -367,8 +367,8 @@
                     },
                     success: function (response) {
                         Swal.fire({
-                            icon: 'success',
-                            title: 'Cancelled!',
+                            icon: response.type || 'success',
+                            title: response.title || 'Cancellation requested',
                             text: response.message,
                             timer: 2000,
                             showConfirmButton: false

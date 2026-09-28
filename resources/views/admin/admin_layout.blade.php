@@ -259,14 +259,12 @@ Navbar -->
         </li>
       </ul>
     </li>
-    <!-- Refund Management 
     <li class="nav-item">
-      <a href="" class="nav-link {{ request()->routeIs('refundRequest') ? 'active' : '' }}">
+      <a href="{{ route('admin.refunds') }}" class="nav-link {{ request()->routeIs('admin.refunds*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-retweet"></i>
-        <p>Refund</p>
+        <p>Refund Requests</p>
       </a>
     </li>
--->
     <!-- Notifications -->
     <li class="nav-item">
        <a href="{{ route('admin.notifications') }}" class="nav-link {{ request()->routeIs('admin.notifications') ? 'active' : '' }}">

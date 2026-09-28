@@ -10,6 +10,8 @@ use App\Models\Review;
 use App\Models\Appointment;
 use App\Models\Notification;
 use App\Models\Withdrawal;
+use App\Models\Refund;
+use Razorpay\Api\Api;
 
 use Illuminate\Support\Facades\DB;
 
@@ -55,6 +57,94 @@ class AdminController extends Controller
             'todayBookings',
             'pendingBookings'
         ));
+    }
+
+    public function listRefunds(Request $request)
+    {
+        $refunds = Refund::with(['appointment', 'client', 'doctor', 'processor'])
+            ->when($request->filled('status'), function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->latest()
+            ->paginate($request->input('per_page', 15));
+
+        return view('admin.refunds', compact('refunds'));
+    }
+
+    public function approveRefund($id)
+    {
+        $refund = Refund::with('appointment')->findOrFail($id);
+
+        if (!in_array($refund->status, ['Pending', 'Failed'])) {
+            return back()->with('error', 'This refund request has already been processed.');
+        }
+
+        if (!$refund->appointment || !in_array($refund->appointment->status, ['Cancellation Requested', 'Pending', 'Confirmed', 'Rejected'])) {
+            return back()->with('error', 'This appointment is not eligible for a refund.');
+        }
+
+        $refund->update(['status' => 'Processing', 'failure_reason' => null]);
+
+        try {
+            $api = new Api(env('RAZORPAY_KEY_ID'), env('RAZORPAY_KEY_SECRET'));
+            $razorpayRefund = $api->payment->fetch($refund->payment_id)->refund([
+                'amount' => (int) round($refund->amount * 100),
+                'notes' => [
+                    'appointment_id' => (string) $refund->appointment_id,
+                    'refund_request_id' => (string) $refund->id,
+                ],
+            ]);
+
+            DB::transaction(function () use ($refund, $razorpayRefund) {
+                $refund->update([
+                    'status' => 'Processed',
+                    'refund_id' => $razorpayRefund->id,
+                    'processed_by' => Auth::id(),
+                    'processed_at' => now(),
+                ]);
+                $refund->appointment->update(['status' => 'Cancelled']);
+
+                // A completed appointment is blocked above. This remains a safeguard if
+                // a wallet credit exists from an earlier inconsistent record.
+                if (Wallet::where('doctor_id', $refund->doctor_id)->where('payment_id', $refund->payment_id)->where('credit', '>', 0)->exists()) {
+                    Wallet::create([
+                        'client_id' => $refund->client_id,
+                        'doctor_id' => $refund->doctor_id,
+                        'charges' => 0,
+                        'debit' => $refund->appointment->doctor_price - $refund->appointment->commission_amount,
+                        'credit' => 0,
+                        'details' => 'Refund reversal for appointment #' . $refund->appointment_id,
+                        'payment_id' => $refund->payment_id,
+                    ]);
+                }
+            });
+
+            Notification::create(['title' => 'Refund processed', 'message' => 'Your refund for appointment #' . $refund->appointment_id . ' has been processed.', 'client_id' => $refund->client_id, 'doctor_id' => $refund->doctor_id, 'status' => 'Completed']);
+            return back()->with('success', 'Refund processed in Razorpay and the appointment was cancelled.');
+        } catch (\Exception $e) {
+            $refund->update(['status' => 'Failed', 'failure_reason' => $e->getMessage()]);
+            return back()->with('error', 'Razorpay refund failed: ' . $e->getMessage());
+        }
+    }
+
+    public function rejectRefund(Request $request, $id)
+    {
+        $refund = Refund::findOrFail($id);
+        if ($refund->status !== 'Pending') {
+            return back()->with('error', 'Only pending refund requests can be rejected.');
+        }
+
+        $refund->update([
+            'status' => 'Rejected',
+            'processed_by' => Auth::id(),
+            'processed_at' => now(),
+            'failure_reason' => $request->input('reason', 'Refund request rejected by administrator.'),
+        ]);
+        if ($refund->appointment && $refund->original_appointment_status) {
+            $refund->appointment->update(['status' => $refund->original_appointment_status]);
+        }
+        Notification::create(['title' => 'Refund request rejected', 'message' => $refund->failure_reason, 'client_id' => $refund->client_id, 'doctor_id' => $refund->doctor_id, 'status' => 'Completed']);
+        return back()->with('success', 'Refund request rejected.');
     }
     
 

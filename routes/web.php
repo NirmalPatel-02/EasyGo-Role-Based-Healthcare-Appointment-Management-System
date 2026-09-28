@@ -165,6 +165,9 @@ Route::post('/change-password', [AdminAuthController::class, 'updatePassword'])-
     Route::get('/clients', [AdminController::class, 'listUsers'])->name('admin.clientList');
     Route::post('/update-user', [UserController::class, 'updateUser'])->name('updateUserAdmin');
     Route::get('/appointments', [AdminController::class, 'listAppointments'])->name('admin.appointmentList');
+    Route::get('/refunds', [AdminController::class, 'listRefunds'])->name('admin.refunds');
+    Route::post('/refunds/{id}/approve', [AdminController::class, 'approveRefund'])->name('admin.refunds.approve');
+    Route::post('/refunds/{id}/reject', [AdminController::class, 'rejectRefund'])->name('admin.refunds.reject');
     Route::get('/wallet-history', [AdminController::class, 'walletEntries'])->name('admin.wallets');
     Route::get('/income-history', [AdminController::class, 'incomeEntries'])->name('admin.incomes');
     Route::get('/withdrawal-history', [AdminController::class, 'listWithdrawals'])->name('admin.withdrawals');

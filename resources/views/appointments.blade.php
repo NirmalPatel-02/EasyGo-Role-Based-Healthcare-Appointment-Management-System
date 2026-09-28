@@ -108,6 +108,7 @@
             </td>
             <td>
                 <div class="d-flex gap-3">
+                    @if (!in_array($row->status, ['Cancellation Requested', 'Cancelled']))
                     <!-- Eye Icon for Viewing Details -->
                     <a href="#" class="view-details-btn" data-bs-toggle="modal" data-bs-target="#appointmentModal"  data-bs-target="#appointmentModal" 
                     data-id="{{ $row->id }}"
@@ -137,14 +138,15 @@
 </svg>
 
                     </a>
-                    @if ($row->status !== 'Completed' && $row->status !== 'Cancelled')
+                    @endif
+                    @if (in_array($row->status, ['Pending', 'Confirmed', 'Rejected']))
     <a href="reschedule-appointment?id={{ $row->id }}">
         <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 20.5001C14.6944 20.5001 18.5 16.6945 18.5 12.0001C18.5 9.17456 17.1213 6.67103 15 5.1255M11 22.4001L9 20.4001L11 18.4001M10 3.5001C5.30558 3.5001 1.5 7.30568 1.5 12.0001C1.5 14.8256 2.87867 17.3292 5 18.8747M9 5.6001L11 3.6001L9 1.6001" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </a>
 @endif
-@if ($row->status !== 'Completed' && $row->status !== 'Cancelled' )
+@if (in_array($row->status, ['Pending', 'Confirmed', 'Rejected']))
                     <!-- Cancel Appointment Button -->
                     <a href="#" id="cancel" class="cancel-btn" data-id="{{ $row->id }}">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,6 +165,9 @@
                     Add Review
                 @endif
             </a>
+            @endif
+            @if ($row->status === 'Cancellation Requested')
+                <span class="text-muted small">Cancellation/refund under admin review</span>
             @endif
 
                 </div>

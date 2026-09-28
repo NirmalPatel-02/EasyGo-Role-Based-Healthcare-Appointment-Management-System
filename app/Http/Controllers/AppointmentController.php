@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Slot;
 use App\Models\Notification;
+use App\Models\Refund;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -213,11 +214,18 @@ public function getAvailableSlots(Request $request)
 
 
 
-public function cancelAppointment($id)
+public function cancelAppointment(Request $request, $id)
 {
     $appointment = Appointment::findOrFail($id);
+    $user = Auth::user();
 
-    // Ensure status is Pending, Rejected, Confirmed, or Cancelled
+    if (!in_array($user->role, ['client', 'doctor']) ||
+        ($user->role === 'client' && $appointment->client_id !== $user->id) ||
+        ($user->role === 'doctor' && $appointment->doctor_id !== $user->id)) {
+        return response()->json(['type' => 'error', 'title' => 'Unauthorized', 'message' => 'You cannot request a refund for this appointment.'], 403);
+    }
+
+    // Completed appointments may already have been paid out to the doctor.
     if (!in_array($appointment->status, ['Pending', 'Rejected', 'Confirmed'])) {
         return response()->json(['type'=>'error','title'=>'Not cancelled','message' => 'This appointment cannot be cancelled'], 200);
     }
@@ -230,35 +238,29 @@ public function cancelAppointment($id)
         ], 200);
     }
     
-    // Update the status to Cancelled
-    $appointment->status = 'Cancelled';
-    $appointment->save();
+    if (empty($appointment->payment_id) || $appointment->total_amount <= 0) {
+        return response()->json(['type' => 'error', 'title' => 'Refund unavailable', 'message' => 'This appointment has no valid captured payment to refund.'], 200);
+    }
 
-    // Raise Razorpay refund request
-    try {
-        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+    if (Refund::where('appointment_id', $appointment->id)->whereIn('status', ['Pending', 'Processing', 'Processed'])->exists()) {
+        return response()->json(['type' => 'error', 'title' => 'Request already submitted', 'message' => 'A refund request for this appointment is already being reviewed.'], 200);
+    }
 
-        $refund = $api->payment->fetch($appointment->payment_id)->refund([
-            'amount' => $appointment->amount * 100, // Razorpay expects amount in the smallest currency unit
-            'notes' => [
-                'appointment_id' => $appointment->id,
-                'reason' => 'Same-day cancellation',
-            ]
-        ]);
-
-        // Store refund details in the database
+    DB::transaction(function () use ($appointment, $request, $user) {
         Refund::create([
             'appointment_id' => $appointment->id,
             'client_id' => $appointment->client_id,
             'doctor_id' => $appointment->doctor_id,
             'payment_id' => $appointment->payment_id,
-            'amount' => $appointment->amount,
+            'amount' => $appointment->total_amount,
+            'status' => 'Pending',
+            'reason' => $request->input('reason', 'Cancellation requested by ' . $user->role),
+            'original_appointment_status' => $appointment->status,
         ]);
+        $appointment->update(['status' => 'Cancellation Requested']);
+    });
 
-        return response()->json(['type'=>'success','title'=>'Cancelled','message' => 'Appointment cancelled successfully and refund processed']);
-    } catch (\Exception $e) {
-        return response()->json(['type'=>'error','title'=>'Refund Failed','message' => 'Appointment cancelled but refund processing failed: ' . $e->getMessage()], 200);
-    }
+    return response()->json(['type' => 'success', 'title' => 'Cancellation requested', 'message' => 'Your appointment is on hold while the administrator reviews the refund request.']);
 }
 
 
@@ -349,6 +351,10 @@ public function updateStatus(Request $request, $id)
 
     if ($appointment->doctor_id != $doctor->id) {
         return response()->json(['message' => 'Unauthorized action'], 200);
+    }
+
+    if (Refund::where('appointment_id', $appointment->id)->whereIn('status', ['Pending', 'Processing'])->exists()) {
+        return response()->json(['message' => 'This appointment has a pending refund request and cannot be updated.'], 422);
     }
 
     // Update the status of the appointment

@@ -79,9 +79,13 @@
                                     <tr>
                                         <td>{{ $withdrawal->id }}</td>
                                         <td>
+                                            @if($withdrawal->doctor)
                                             <a href="{{ route('doctorView', ['id' => $withdrawal->doctor->id]) }}">
                                                 {{ $withdrawal->doctor->first_name }} {{ $withdrawal->doctor->last_name }}
                                             </a>
+                                            @else
+                                                <span class="text-muted">Deleted doctor (ID: {{ $withdrawal->doctor_id }})</span>
+                                            @endif
                                         </td>
                                         <td>{{ $withdrawal->transaction_id }}</td>
                                         <td>{{ $withdrawal->amount }}</td>
