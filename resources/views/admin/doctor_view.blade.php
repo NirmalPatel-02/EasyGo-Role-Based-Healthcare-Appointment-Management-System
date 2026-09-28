@@ -200,18 +200,16 @@
                                             <tr>
     <th class="col-3">Latitude, Longitude</th>
     <td class="col-9">
-        <a href="https://www.google.com/maps?q={{ $user->latitude }},{{ $user->longitude }}" target="_blank">
-            {{ $user->latitude }}, {{ $user->longitude }}
-        </a>
-        <!-- Responsive map -->
-        <div style="margin-top: 10px; position: relative; overflow: hidden; padding-bottom: 56.25%; height: 0;">
-            <iframe 
-                src="https://www.google.com/maps?q={{ $user->latitude }},{{ $user->longitude }}&output=embed" 
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                allowfullscreen 
-                loading="lazy">
-            </iframe>
-        </div>
+        @if(is_numeric($user->latitude) && is_numeric($user->longitude))
+            <a href="https://www.openstreetmap.org/?mlat={{ $user->latitude }}&mlon={{ $user->longitude }}#map=15/{{ $user->latitude }}/{{ $user->longitude }}" target="_blank" rel="noopener">
+                {{ $user->latitude }}, {{ $user->longitude }}
+            </a>
+            <div style="margin-top: 10px; position: relative; overflow: hidden; padding-bottom: 56.25%; height: 0;">
+                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox={{ $user->longitude - 0.02 }}%2C{{ $user->latitude - 0.02 }}%2C{{ $user->longitude + 0.02 }}%2C{{ $user->latitude + 0.02 }}&layer=mapnik&marker={{ $user->latitude }}%2C{{ $user->longitude }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" loading="lazy"></iframe>
+            </div>
+        @else
+            <span class="text-muted">Location has not been selected by this doctor yet.</span>
+        @endif
     </td>
 </tr>
 

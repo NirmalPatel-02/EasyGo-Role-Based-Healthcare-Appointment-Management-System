@@ -402,7 +402,8 @@
 }
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkVY54ZKvhxyMy9fJzcK2LS1uIUxVdwEU"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -510,11 +511,11 @@ console.log($(this).data("payment-id"));
     $('#apId').text(id);
     $('#createdAt').text(created);
     
-    var googleMapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    var mapLink = `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=15/${latitude}/${longitude}`;
 
     // Populate modal fields
 
-    $('#view-direction-btn').attr('href', googleMapLink);
+    $('#view-direction-btn').attr('href', mapLink);
 
     // Initialize Map
     initMap(latitude, longitude);
@@ -524,20 +525,17 @@ console.log($(this).data("payment-id"));
 });
 function initMap(lat, lng) {
     var mapContainer = document.getElementById('map-container');
-    var mapOptions = {
-        center: { lat: parseFloat(lat), lng: parseFloat(lng) },
-        zoom: 15,
-    };
-
-    // Create a map instance
-    var map = new google.maps.Map(mapContainer, mapOptions);
-
-    // Add a marker
-    var marker = new google.maps.Marker({
-        position: { lat: parseFloat(lat), lng: parseFloat(lng) },
-        map: map,
-        title: 'Appointment Location',
-    });
+    if (!Number.isFinite(parseFloat(lat)) || !Number.isFinite(parseFloat(lng))) {
+        mapContainer.textContent = 'This doctor has not selected a location yet.';
+        return;
+    }
+    if (mapContainer._leaflet_id) mapContainer._leaflet_id = null;
+    mapContainer.innerHTML = '';
+    var map = L.map(mapContainer).setView([parseFloat(lat), parseFloat(lng)], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map).bindPopup('Appointment location').openPopup();
 }
 // Ensure modal closes programmatically as a fallback
 $('#appointmentModal').on('hidden.bs.modal', function () {

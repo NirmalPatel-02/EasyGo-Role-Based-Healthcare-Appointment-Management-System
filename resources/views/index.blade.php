@@ -180,79 +180,37 @@
 
 @section('scripts')
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkVY54ZKvhxyMy9fJzcK2LS1uIUxVdwEU&libraries=places"></script>
     <script>
-        function initializeAutocomplete() {
-            const input = document.getElementById('locality-search');
-            const autocomplete = new google.maps.places.Autocomplete(input);
-
-            // Listen for the event when the user selects a suggestion
-            autocomplete.addListener('place_changed', () => {
-                const place = autocomplete.getPlace();
-
-                // Check if the place has a geometry (location)
-                if (place.geometry) {
-                    const lat = place.geometry.location.lat();
-                    const lng = place.geometry.location.lng();
-                    $("#longitude").val(lng);
-                    $("#latitude").val(lat);
-                   
-                   
-                    
-                } else {
-                  
-                }
-            });
-        }
-
-        // Initialize Autocomplete when the page loads
-        google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
-
-
-    
-    let cityInput = document.getElementById('city');
-   
-    // Initialize Google Places Autocomplete
-    function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(cityInput, {
-            types: ['(cities)'],  // Only cities
-            componentRestrictions: { country: 'IN' }, // Restrict to India (adjust as needed)
+    document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('locality-search');
+        const list = document.getElementById('locality-list');
+        let debounce;
+        input.addEventListener('input', function () {
+            clearTimeout(debounce);
+            const query = input.value.trim();
+            list.innerHTML = '';
+            if (query.length < 3) return;
+            debounce = setTimeout(async function () {
+                try {
+                    const response = await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=' + encodeURIComponent(query));
+                    const places = await response.json();
+                    places.forEach(function (place) {
+                        const item = document.createElement('div');
+                        item.className = 'p-2 bg-white border';
+                        item.style.cursor = 'pointer';
+                        item.textContent = place.display_name;
+                        item.onclick = function () {
+                            input.value = place.display_name;
+                            $('#latitude').val(place.lat);
+                            $('#longitude').val(place.lon);
+                            list.innerHTML = '';
+                        };
+                        list.appendChild(item);
+                    });
+                } catch (error) { console.error('Location search failed', error); }
+            }, 350);
         });
-
-        // Listen for when the user selects a place from the autocomplete suggestions
-        autocomplete.addListener('place_changed', function () {
-            const place = autocomplete.getPlace();
-            
-            // Check if the place has a geometry (location)
-            if (place.geometry) {
-                // Initialize city, state, and zip code variables
-                let city = '';
-             
-                // Loop through the address components to extract city, state, and zip code
-                for (let i = 0; i < place.address_components.length; i++) {
-                    const component = place.address_components[i];
-
-                    // Extract city
-                    if (component.types.includes('locality')) {
-                        city = component.long_name;
-                    }
-
-                
-                }
-
-                // Populate the #city field
-                cityInput.value = city;
-
-               
-
-            } else {
-              
-            }
-        });
-    }
-
-    // Initialize the autocomplete after the page loads
-    google.maps.event.addDomListener(window, 'load', initAutocomplete);
+    });
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {

@@ -716,104 +716,51 @@ border-color:#000066;
 }
 
 </style>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkVY54ZKvhxyMy9fJzcK2LS1uIUxVdwEU&libraries=places"></script>
-    <script>
-        function initializeAutocomplete() {
-            const input = document.getElementById('addressInput');
-            const autocomplete = new google.maps.places.Autocomplete(input);
-
-            // Listen for the event when the user selects a suggestion
-            autocomplete.addListener('place_changed', () => {
-                const place = autocomplete.getPlace();
-
-                // Check if the place has a geometry (location)
-                if (place.geometry) {
-                    const lat = place.geometry.location.lat();
-                    const lng = place.geometry.location.lng();
-                    $("#longitude").val(lng);
-                    $("#latitude").val(lat);
-                    $("#lng").text(lng);
-                    $("#lat").text(lat);
-                   
-                    
-                } else {
-                    alert('Invalid address.');
-                }
-            });
-        }
-
-        // Initialize Autocomplete when the page loads
-        google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
-    </script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-    let autocomplete;
-    let cityInput = document.getElementById('city');
-    let stateInput = document.getElementById('state');
-    let zipcodeInput = document.getElementById('zipcode');
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('addressInput');
+    const results = document.createElement('div');
+    results.className = 'list-group position-absolute w-100';
+    results.style.zIndex = '1050';
+    input.parentNode.style.position = 'relative';
+    input.parentNode.appendChild(results);
+    let debounce;
 
-    // Initialize Google Places Autocomplete
-    function initAutocomplete() {
-        autocomplete = new google.maps.places.Autocomplete(cityInput, {
-            types: ['(cities)'],  // Only cities
-            componentRestrictions: { country: 'IN' }, // Restrict to India (adjust as needed)
-        });
-
-        // Listen for when the user selects a place from the autocomplete suggestions
-        autocomplete.addListener('place_changed', function () {
-            const place = autocomplete.getPlace();
-            
-            // Check if the place has a geometry (location)
-            if (place.geometry) {
-                // Initialize city, state, and zip code variables
-                let city = '';
-                let state = '';
-                let zipCode = '';
-
-                // Loop through the address components to extract city, state, and zip code
-                for (let i = 0; i < place.address_components.length; i++) {
-                    const component = place.address_components[i];
-
-                    // Extract city
-                    if (component.types.includes('locality')) {
-                        city = component.long_name;
-                    }
-
-                    // Extract state
-                    if (component.types.includes('administrative_area_level_1')) {
-                        state = component.long_name.toUpperCase();
-                        console.log(state);
-                    }
-
-                    // Extract zip code
-                    if (component.types.includes('postal_code')) {
-                        zipCode = component.long_name;
-                    }
-                }
-
-                // Populate the #city field
-                cityInput.value = city;
-
-                // Auto-select the state, ensuring case-insensitive comparison
-                const selectedState = stateInput.value;
-                if (selectedState && state.toLowerCase() === selectedState.toLowerCase()) {
-                    stateInput.value = state;
-                } else {
-                    stateInput.value = state;
-                }
-
-                // Populate the #zipcode field
-                zipcodeInput.value = zipCode;
-
-            } else {
-                alert('Invalid address.');
-            }
-        });
-    }
-
-    // Initialize the autocomplete after the page loads
-    google.maps.event.addDomListener(window, 'load', initAutocomplete);
-
-
+    input.addEventListener('input', function () {
+        clearTimeout(debounce);
+        const query = input.value.trim();
+        results.innerHTML = '';
+        if (query.length < 3) return;
+        debounce = setTimeout(async function () {
+            try {
+                const response = await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=' + encodeURIComponent(query));
+                const places = await response.json();
+                places.forEach(function (place) {
+                    const item = document.createElement('button');
+                    item.type = 'button';
+                    item.className = 'list-group-item list-group-item-action text-start';
+                    item.textContent = place.display_name;
+                    item.addEventListener('click', function () {
+                        input.value = place.display_name;
+                        $('#latitude').val(place.lat);
+                        $('#longitude').val(place.lon);
+                        $('#lat').text(place.lat);
+                        $('#lng').text(place.lon);
+                        results.innerHTML = '';
+                    });
+                    results.appendChild(item);
+                });
+            } catch (error) { console.error('Location search failed', error); }
+        }, 350);
+    });
+    document.addEventListener('click', function (event) {
+        if (!input.parentNode.contains(event.target)) results.innerHTML = '';
+    });
+});
+</script>
+<script>
     $(document).ready(function() {
     
         $("#viewMapBtn").on('click', function() {
@@ -834,19 +781,14 @@ border-color:#000066;
     // Function to open the map inside the modal
     function openMapModal(lat, lng) {
       
-        // Initialize the map using Google Maps API
-        const mapOptions = {
-            center: new google.maps.LatLng(lat, lng),
-            zoom: 10,
-        };
-        const map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-        // Add a marker to the map
-        const marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lat, lng),
-            map: map,
-            title: "Selected Location",
-        });
+        const mapElement = document.getElementById('map');
+        if (mapElement._leaflet_id) mapElement._leaflet_id = null;
+        mapElement.innerHTML = '';
+        const map = L.map(mapElement).setView([parseFloat(lat), parseFloat(lng)], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map).bindPopup('Selected location').openPopup();
     }
 });
 $(document).ready(function () {

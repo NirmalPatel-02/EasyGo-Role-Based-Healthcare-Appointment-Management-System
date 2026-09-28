@@ -90,7 +90,7 @@
              </div></a>
                 </div>
  <div class="col-md-3 py-2">
-                                                <a href="https://www.google.com/maps?q={{ $doctor->latitude }},{{ $doctor->longitude }}" target="_blank" class="link-underline link-underline-opacity-0">
+                                                <a href="https://www.openstreetmap.org/?mlat={{ $doctor->latitude }}&mlon={{ $doctor->longitude }}#map=15/{{ $doctor->latitude }}/{{ $doctor->longitude }}" target="_blank" rel="noopener" class="link-underline link-underline-opacity-0">
                                                  
                                                 <div class="Call_Doctor_btn d-flex justify-content-center align-items-center" style="font-size:14px;color:green"> {{($doctor->distance)?round($doctor->distance,2)." KM":""}}  Map <i class="ms-2 fas fa-directions"></i> 
                                                 

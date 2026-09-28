@@ -1092,18 +1092,16 @@ if ($request->has('search')) {
   
 public function getCoordinates($address)
 {
-    $apiKey = 'AIzaSyAkVY54ZKvhxyMy9fJzcK2LS1uIUxVdwEU';
-    $address = urlencode($address);
-    $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
-    $response = file_get_contents($url);
-    $data = json_decode($response);
+    $response = Http::timeout(5)
+        ->withHeaders(['User-Agent' => config('app.name') . ' location search'])
+        ->get('https://nominatim.openstreetmap.org/search', [
+            'q' => $address,
+            'format' => 'jsonv2',
+            'limit' => 1,
+        ]);
 
-    if ($data->status == 'OK') {
-        $location = $data->results[0]->geometry->location;
-        return ['lat' => $location->lat, 'lng' => $location->lng];
-    }
-
-    return null;
+    $place = $response->successful() ? $response->json()[0] ?? null : null;
+    return $place ? ['lat' => $place['lat'], 'lng' => $place['lon']] : null;
 }
 
 

@@ -122,7 +122,7 @@
                                             <td>{{ $doctor->zipcode }}</td>
                                             <td>{{ $doctor->education }}</td>
                                             <td>
-<a href="https://www.google.com/maps?q={{ $doctor->latitude }},{{ $doctor->longitude }}" target="_blank">
+<a href="https://www.openstreetmap.org/?mlat={{ $doctor->latitude }}&mlon={{ $doctor->longitude }}#map=15/{{ $doctor->latitude }}/{{ $doctor->longitude }}" target="_blank" rel="noopener">
 Latitude, Longitude: {{ $doctor->latitude }}, {{ $doctor->longitude }}
 </a>
 

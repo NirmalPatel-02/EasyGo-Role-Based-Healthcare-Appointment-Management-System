@@ -144,22 +144,16 @@ public function getCity(Request $request)
     // Helper function to fetch city name
     private function getCityNameFromCoordinates($latitude, $longitude)
     {
-        // Use Geocoding API or any service to fetch city name
-        $apiKey = "AIzaSyAkVY54ZKvhxyMy9fJzcK2LS1uIUxVdwEU"; // Ensure you have this in your .env file
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng={$latitude},{$longitude}&key={$apiKey}";
+        $response = Http::timeout(5)
+            ->withHeaders(['User-Agent' => config('app.name') . ' location search'])
+            ->get('https://nominatim.openstreetmap.org/reverse', [
+                'lat' => $latitude,
+                'lon' => $longitude,
+                'format' => 'jsonv2',
+            ]);
 
-        $response = file_get_contents($url);
-        $data = json_decode($response, true);
-
-        if (isset($data['results'][0]['address_components'])) {
-            foreach ($data['results'][0]['address_components'] as $component) {
-                if (in_array('locality', $component['types'])) {
-                    return $component['long_name'];
-                }
-            }
-        }
-
-        return null;
+        $address = $response->successful() ? $response->json('address', []) : [];
+        return $address['city'] ?? $address['town'] ?? $address['village'] ?? null;
     }
 
 
