@@ -182,33 +182,79 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const input = document.getElementById('locality-search');
-        const list = document.getElementById('locality-list');
+        const input = document.getElementById('nearby-location');
+        const list = document.getElementById('nearby-location-list');
+        const form = document.getElementById('search-form');
+        const city = document.getElementById('city');
+        const latitude = document.getElementById('latitude');
+        const longitude = document.getElementById('longitude');
         let debounce;
+
+        if (!input || !list || !form) return;
+
         input.addEventListener('input', function () {
             clearTimeout(debounce);
-            const query = input.value.trim();
+            latitude.value = '';
+            longitude.value = '';
+            input.setCustomValidity('');
             list.innerHTML = '';
+            list.style.display = 'none';
+
+            const query = input.value.trim();
             if (query.length < 3) return;
+
+            const searchQuery = city.value.trim()
+                ? query + ', ' + city.value.trim()
+                : query;
+
             debounce = setTimeout(async function () {
                 try {
-                    const response = await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=' + encodeURIComponent(query));
+                    const response = await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=' + encodeURIComponent(searchQuery));
+                    if (!response.ok) throw new Error('Location search request failed');
+
                     const places = await response.json();
+                    if (!places.length) {
+                        list.textContent = 'No locations found';
+                        list.style.display = 'block';
+                        return;
+                    }
+
+                    list.style.display = 'block';
                     places.forEach(function (place) {
-                        const item = document.createElement('div');
-                        item.className = 'p-2 bg-white border';
-                        item.style.cursor = 'pointer';
+                        const item = document.createElement('button');
+                        item.type = 'button';
+                        item.className = 'locality-item w-100 text-start border-0 bg-white';
                         item.textContent = place.display_name;
-                        item.onclick = function () {
+                        item.addEventListener('click', function () {
                             input.value = place.display_name;
-                            $('#latitude').val(place.lat);
-                            $('#longitude').val(place.lon);
+                            latitude.value = place.lat;
+                            longitude.value = place.lon;
+                            input.setCustomValidity('');
                             list.innerHTML = '';
-                        };
+                            list.style.display = 'none';
+                        });
                         list.appendChild(item);
                     });
-                } catch (error) { console.error('Location search failed', error); }
+                } catch (error) {
+                    list.textContent = 'Location search is unavailable. Please try again.';
+                    console.error('Location search failed', error);
+                }
             }, 350);
+        });
+
+        form.addEventListener('submit', function (event) {
+            if (input.value.trim() && (!latitude.value || !longitude.value)) {
+                event.preventDefault();
+                input.setCustomValidity('Choose a location from the suggestions before searching.');
+                input.reportValidity();
+            }
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!input.parentNode.contains(event.target)) {
+                list.innerHTML = '';
+                list.style.display = 'none';
+            }
         });
     });
     </script>
@@ -359,44 +405,6 @@ function createPagination(totalPages, currentPage) {
 
     return liTag;
 }
-$(document).ready(function () {
-    const specialities = @json($specialities); // Pass server-side array to JavaScript
-
-    $('#speciality').on('input', function () {
-        let query = $(this).val().toLowerCase();
-        if (query) {
-            let suggestions = specialities.filter(title => title.toLowerCase().includes(query));
-            if (suggestions.length) {
-                let suggestionsHTML = suggestions.map(speciality => {
-                    // Highlight matching text
-                    let regex = new RegExp(`(${query})`, 'gi');
-                    let highlighted = speciality.replace(regex, '<strong>$1</strong>');
-                    return `<div class="suggestion-item">${highlighted}</div>`;
-                }).join('');
-                $('#specialitySuggestions').html(suggestionsHTML).fadeIn();
-            } else {
-                $('#specialitySuggestions').fadeOut();
-            }
-        } else {
-            $('#specialitySuggestions').fadeOut();
-        }
-    });
-
-    // Select a suggestion and populate the input field
-    $(document).on('click', '.suggestion-item', function () {
-        let text = $(this).text();
-        $('#speciality').val(text); // Fill the input with plain text
-        $('#specialitySuggestions').fadeOut();
-    });
-
-    // Hide suggestions when clicking outside
-    $(document).click(function (e) {
-        if (!$(e.target).closest('.form-group').length) {
-            $('#specialitySuggestions').fadeOut();
-        }
-    });
-});
-
 </script>
 
 @endsection

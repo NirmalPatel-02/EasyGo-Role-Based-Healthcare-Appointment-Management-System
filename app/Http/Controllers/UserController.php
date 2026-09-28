@@ -786,6 +786,14 @@ public function updateDoctorData(Request $request)
 }
 public function searchDoctors(Request $request)
 {
+    if ($request->filled('nearby_location') || $request->filled('latitude') || $request->filled('longitude')) {
+        $request->validate([
+            'nearby_location' => 'nullable|string|max:255',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+        ]);
+    }
+
     $query = User::where('role', 'doctor');
 
   // Apply city filter if provided
@@ -795,13 +803,12 @@ if ($request->has('city')) {
 }
 
 // dd($query->get());
-    // If locality is provided, use latitude and longitude for proximity search
-    if ($request->has('longitude')) {
-        $userLatitude = $request->latitude ?? 0;
-        $userLongitude = $request->longitude ?? 0;
-      
-        $radius = $request->get('radius', 50);
-     if($userLatitude && $userLongitude) {
+        // Nearby searches use the selected location and a 25 km radius.
+        if ($request->filled('latitude') && $request->filled('longitude')) {
+                $userLatitude = (float) $request->latitude;
+                $userLongitude = (float) $request->longitude;
+                $radius = 25;
+
         $query->selectRaw(
           "*, (6371 * acos(cos(radians(?)) * cos(radians(latitude)) 
             * cos(radians(longitude) - radians(?)) + sin(radians(?)) 
@@ -810,8 +817,7 @@ if ($request->has('city')) {
         )
         ->having('distance', '<=', $radius)
         ->orderBy('distance', 'asc');
-     }
-      }
+    }
     // Apply speciality filter if provided
     if ($request->has('speciality')) {
         $query->where('speciality', 'like', '%' . $request->speciality . '%');
