@@ -14,7 +14,10 @@ class ClientMiddleware
         }
     
         // Store the intended URL with query parameters
-        session(['url.intended' => $request->fullUrl()]);
+        session([
+            'url.intended' => $request->fullUrl(),
+            'url.intended_role' => 'client',
+        ]);
     
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthorized'], 403);

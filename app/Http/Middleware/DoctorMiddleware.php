@@ -18,6 +18,12 @@ class DoctorMiddleware
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
+        // Keep the intended page tied to the role that is allowed to open it.
+        session([
+            'url.intended' => $request->fullUrl(),
+            'url.intended_role' => 'doctor',
+        ]);
+
         return redirect()->route('login')->withErrors(['error' => 'Access Denied']);
     }
 }

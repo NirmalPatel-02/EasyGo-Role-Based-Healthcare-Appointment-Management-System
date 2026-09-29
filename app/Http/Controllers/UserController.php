@@ -212,20 +212,13 @@ class UserController extends Controller
     // Generate an API token for mobile use
     $token = $user->createToken('MobileApp')->plainTextToken;
 
-    // Determine the redirect URL based on user role
-    $redirectTo = $user->role === 'doctor' 
-        ? $this->redirectToDashboard() 
-        : route('bookAppointment'); // Default redirect if no intended URL
-
-    // Check if the intended URL exists in the session
-    if (session()->has('url.intended')) {
-        $redirectTo = session('url.intended'); // Set redirect URL from session
-        session()->forget('url.intended'); // Remove the session value after use
+    // Use a saved destination only when it was created for this user's role.
+    // This prevents a stale client/doctor URL from causing an Access Denied loop.
+    $redirectTo = $this->redirectToDashboard();
+    if (session('url.intended_role') === $user->role && session()->has('url.intended')) {
+        $redirectTo = session('url.intended');
     }
-    else {
-        
-        $redirectTo=$this->redirectToDashboard() ;
-    }
+    session()->forget(['url.intended', 'url.intended_role']);
 
     return response()->json([
         'success' => true,
