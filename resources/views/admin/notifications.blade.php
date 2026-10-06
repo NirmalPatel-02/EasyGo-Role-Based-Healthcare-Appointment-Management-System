@@ -30,9 +30,9 @@
                             <h3 class="card-title">Notifications</h3>
                             <div class="card-tools">
                                 <!-- Button to Open Add Notification Modal -->
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addNotificationModal">
+                                {{-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addNotificationModal">
                                     Add Notification
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                         <div class="card-body table-responsive">
