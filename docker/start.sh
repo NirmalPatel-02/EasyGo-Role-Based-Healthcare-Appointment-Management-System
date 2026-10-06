@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+cd /var/www/html
+
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear
+
+php artisan storage:link || true
+
+php-fpm -D
+
+nginx -g "daemon off;"
